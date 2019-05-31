@@ -1,5 +1,10 @@
 # king-ui
 
+## 尝试写一写Vue的UI组件库
+`开始于 2019-05-31`
+
+`真希望有始有终`
+
 ## Project setup
 ```
 yarn install
@@ -29,6 +34,3 @@ yarn run lint
 ```
 yarn run test:e2e
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
