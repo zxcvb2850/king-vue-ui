@@ -5,7 +5,7 @@
         v-if="group"
         type="checkbox"
         :disable="disable"
-        :value="value"
+        :value="label"
         v-model="model"
         @change="handleChange"
       />
@@ -26,7 +26,7 @@ import Emitter from '../../mixins/emttie';
 import { findComponentUpward } from '../../utlis/assist';
 
 export default {
-  name: 'checkbox',
+  name: 'kCheckbox',
   mixins: [Emitter],
   props: {
     disable: {
@@ -45,6 +45,7 @@ export default {
       type: [String, Number, Boolean],
       default: false,
     },
+    label: [String, Number, Boolean],
   },
   data() {
     return {
@@ -64,14 +65,13 @@ export default {
     } else {
       this.updateModel();
     }
-
-    // console.log('value', this.value, this.currentValue);
   },
   watch: {
     value(val) {
       if (val === this.trueValue || val === this.falseValue) {
         this.updateModel();
       } else {
+        // eslint-disable-next-line no-throw-literal
         throw 'Value should be trueValue or falseValue.';
       }
     },
@@ -79,12 +79,18 @@ export default {
   methods: {
     handleChange(event) {
       if (this.disable) return false;
+
       const { checked } = event.target;
       this.currentValue = checked;
+
       const value = checked ? this.trueValue : this.falseValue;
       this.$emit('input', value);
-      this.$emit('change', value);
-      this.dispatch('kFormItem', 'on-form-change', value);
+      if (this.group) {
+        this.parent.change(this.model);
+      } else {
+        this.$emit('change', value);
+        this.dispatch('kFormItem', 'on-form-change', value);
+      }
       return true;
     },
     updateModel() {

@@ -9,19 +9,18 @@
       <k-form-item label="邮箱" prop="email">
         <k-input v-model="form.email"/>
       </k-form-item>
+      <k-form-item label="爱好" prop="like">
+        <k-checkbox-group v-model="form.like">
+          <k-checkbox label="sing">唱</k-checkbox>
+          <k-checkbox label="dump">跳</k-checkbox>
+          <k-checkbox label="rap">rap</k-checkbox>
+          <k-checkbox label="ball">篮球</k-checkbox>
+        </k-checkbox-group>
+      </k-form-item>
       <k-form-item>
         <button @click="handleSubmit">提交</button>
       </k-form-item>
     </k-form>
-
-    <div>
-      <k-checkbox v-model="checkboxRadio" @change="handleChange">单选框</k-checkbox>
-    </div>
-    <k-checkbox-group v-model="checkboxGroup">
-      <k-checkbox label="apple">苹果</k-checkbox>
-      <k-checkbox label="banner">香蕉</k-checkbox>
-      <k-checkbox label="origin">橘子</k-checkbox>
-    </k-checkbox-group>
   </div>
 </template>
 
@@ -34,12 +33,15 @@ import KCheckboxGroup from '../components/checkbox/checkbox-group';
 
 export default {
   name: 'home',
-  components: { KForm, KFormItem, KInput, KCheckbox, KCheckboxGroup },
+  components: {
+    KForm, KFormItem, KInput, KCheckbox, KCheckboxGroup,
+  },
   data() {
     return {
       form: {
         name: '',
         email: '',
+        like: [],
       },
       rules: {
         name: [
@@ -49,26 +51,25 @@ export default {
           { required: true, message: '邮箱不能为空', trigger: 'blur' },
           { type: 'email', message: '邮箱格式不正确', trigger: 'blur' },
         ],
+        like: [
+          {
+            required: true, type: 'array', message: '请选择爱好', trigger: 'change',
+          },
+        ],
       },
-      checkboxRadio: true,
-      checkboxGroup: ['apple', 'banner', 'origin'],
     };
   },
   methods: {
     handleSubmit() {
-      this.checkboxRadio = false;
-      console.log(this.checkboxGroup)
-
+      // this.checkboxRadio = false;
       this.$refs.form.validate((valid) => {
         if (valid) {
+          console.log(this.form);
           console.log('提交成功');
         } else {
           console.log('提交失败');
         }
       });
-    },
-    handleChange(val) {
-      console.log('change', val);
     },
   },
 };

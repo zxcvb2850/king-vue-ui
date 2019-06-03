@@ -35,15 +35,17 @@ export default {
   },
   methods: {
     updateModel(update) {
-      console.log('checkbox group', update);
       this.childrens = findComponentsDownward(this, 'kCheckbox');
       if (this.childrens) {
         const { value } = this;
         this.childrens.forEach((child) => {
+          // eslint-disable-next-line no-param-reassign
           child.model = value;
 
           if (update) {
+            // eslint-disable-next-line no-param-reassign
             child.currentValue = value.indexOf(child.label) > 0;
+            // eslint-disable-next-line no-param-reassign
             child.group = true;
           }
         });

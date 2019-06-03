@@ -16,6 +16,7 @@ export function findComponentUpward(context, componentName) {
     parent = parent.$parent;
 
     if (parent) {
+      // eslint-disable-next-line prefer-destructuring
       name = parent.$options.name;
     }
   }
@@ -49,6 +50,7 @@ export function findComponentDownward(context, componentName) {
   let children = null;
 
   if (childrens.length) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const child of childrens) {
       if (child.$options.name === componentName) {
         children = child;
@@ -82,9 +84,10 @@ export function findComponentsDownward(context, componentName) {
  * @param exceptMe Boolean 是否本身除外 default = true
  * */
 export function findBrothersComponents(context, componentName, exceptMe = true) {
-  const res = context.$parent.$children.filter(broth => broth.$options.name === componentName)
+  const res = context.$parent.$children.filter(broth => broth.$options.name === componentName);
 
   if (exceptMe) {
+    // eslint-disable-next-line no-underscore-dangle
     const index = res.findIndex(item => item._uid === context._uid);
     res.splice(index, 1);
   }
