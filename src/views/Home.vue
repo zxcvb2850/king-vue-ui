@@ -62,13 +62,18 @@ export default {
   methods: {
     handleSubmit() {
       // this.checkboxRadio = false;
-      this.$refs.form.validate((valid) => {
+      /* this.$refs.form.validate((valid) => {
         if (valid) {
           console.log(this.form);
           console.log('提交成功');
         } else {
           console.log('提交失败');
         }
+      }); */
+
+      this.$Alert.info({
+        content: '我是提示信息 1',
+        duration: 10,
       });
     },
   },
