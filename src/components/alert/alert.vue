@@ -57,6 +57,7 @@ export default {
     left: 0;
     text-align: center;
     pointer-events: none;
+    color: #000;
   }
   .alert-content{
     display: inline-block;
