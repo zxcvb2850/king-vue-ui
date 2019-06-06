@@ -40,12 +40,9 @@ export default {
     remove(name) {
       const { notices } = this;
 
-      // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < notices.length; i++) {
-        if (notices[i].name === name) {
-          this.notices.splice(i, 1);
-          break;
-        }
+      const index = notices.findIndex(item => item.name === name);
+      if (index > -1) {
+        this.notices.splice(index, 1);
       }
     },
   },
