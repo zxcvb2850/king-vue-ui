@@ -71,10 +71,7 @@ export default {
         }
       }); */
 
-      this.$Alert.info({
-        content: '我是提示信息 1',
-        duration: 10,
-      });
+      this.$Alert.info({ content: '我是提示信息 1' });
     },
   },
 };

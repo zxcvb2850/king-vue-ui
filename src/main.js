@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import store from './store';
 import router from './router';
-import Alert from './components/alert/alert';
+import Alert from './components/alert';
 
 Vue.config.productionTip = false;
 
