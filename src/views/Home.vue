@@ -19,6 +19,7 @@
       </k-form-item>
       <k-form-item>
         <button @click="handleSubmit">提交</button>
+        <k-button @click="handleSubmit">提交</k-button>
       </k-form-item>
     </k-form>
   </div>
@@ -30,11 +31,12 @@ import KFormItem from '../components/form/form-item';
 import KInput from '../components/input/input';
 import KCheckbox from '../components/checkbox/checkbox';
 import KCheckboxGroup from '../components/checkbox/checkbox-group';
+import KButton from '../components/button/button';
 
 export default {
   name: 'home',
   components: {
-    KForm, KFormItem, KInput, KCheckbox, KCheckboxGroup,
+    KForm, KFormItem, KInput, KCheckbox, KCheckboxGroup, KButton,
   },
   data() {
     return {
