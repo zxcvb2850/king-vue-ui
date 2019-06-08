@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div :class="[
+    sizeClass ? 'k-button--' + sizeClass : '',
+  ]">
     <label v-if="label" :class="{ 'k-form-item-label-required': isRequired }">{{label}}</label>
     <div>
       <slot></slot>
@@ -16,7 +18,12 @@ import Emitter from '../../mixins/emttie';
 export default {
   name: 'kFormItem',
   mixins: [Emitter],
-  inject: ['form'],
+  inject: ['kForm'],
+  provide() {
+    return {
+      kFormItem: this,
+    };
+  },
   props: {
     label: {
       type: String,
@@ -25,6 +32,7 @@ export default {
     prop: {
       type: String,
     },
+    size: String,
   },
   data() {
     return {
@@ -46,12 +54,18 @@ export default {
   watch: {},
   computed: {
     fieldValue() {
-      return this.form.model[this.prop];
+      return this.kForm.model[this.prop];
+    },
+    kFormItemSize() {
+      return this.size || this.kForm.size;
+    },
+    sizeClass() {
+      return this.kFormItemSize;
     },
   },
   methods: {
     getRules() {
-      let formRules = this.form.rules;
+      let formRules = this.kForm.rules;
       formRules = formRules ? formRules[this.prop] : [];
       return [].concat(formRules || []);
     },
@@ -102,7 +116,7 @@ export default {
       this.validateState = '';
       this.validateMessage = '';
 
-      this.form.model[this.prop] = this.initialValue;
+      this.kForm.model[this.prop] = this.initialValue;
     },
     onFieldChange(val) {
       console.log(val);

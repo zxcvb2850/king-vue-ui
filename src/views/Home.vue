@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
 
-    <k-form ref="form" :model="form" :rules="rules">
+    <k-form ref="form" :model="form" :rules="rules" size="mini">
       <k-form-item label="姓名" prop="name">
         <k-input v-model="form.name"/>
       </k-form-item>
@@ -18,7 +18,6 @@
         </k-checkbox-group>
       </k-form-item>
       <k-form-item>
-        <button @click="handleSubmit">提交</button>
         <k-button @click="handleSubmit">提交</k-button>
       </k-form-item>
     </k-form>
@@ -64,14 +63,14 @@ export default {
   methods: {
     handleSubmit() {
       // this.checkboxRadio = false;
-      /* this.$refs.form.validate((valid) => {
+      this.$refs.form.validate((valid) => {
         if (valid) {
           console.log(this.form);
           console.log('提交成功');
         } else {
           console.log('提交失败');
         }
-      }); */
+      });
 
       this.$Alert.info({ content: '我是提示信息 1' });
     },

@@ -9,7 +9,7 @@ export default {
   name: 'kForm',
   provide() {
     return {
-      form: this,
+      kForm: this,
     };
   },
   props: {
@@ -19,6 +19,8 @@ export default {
     rules: {
       type: Object,
     },
+    size: String,
+    disabled: Boolean,
   },
   data() {
     return {
