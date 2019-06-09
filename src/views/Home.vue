@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
 
-    <k-form ref="form" :model="form" :rules="rules" size="mini">
+    <k-form ref="form" :model="form" :rules="rules">
       <k-form-item label="姓名" prop="name">
         <k-input v-model="form.name"/>
       </k-form-item>
@@ -17,10 +17,22 @@
           <k-checkbox label="ball">篮球</k-checkbox>
         </k-checkbox-group>
       </k-form-item>
+      <k-form-item label="性别" prop="sex">
+        <k-radio-group v-model="form.sex">
+          <k-radio label="nan">男</k-radio>
+          <k-radio label="nv">女</k-radio>
+        </k-radio-group>
+      </k-form-item>
       <k-form-item>
         <k-button @click="handleSubmit">提交</k-button>
       </k-form-item>
     </k-form>
+
+    <k-button-group>
+      <k-button @click="handleSubmit">加</k-button>
+      <k-button @click="handleSubmit">减</k-button>
+      <k-button @click="handleSubmit">成</k-button>
+    </k-button-group>
   </div>
 </template>
 
@@ -30,12 +42,15 @@ import KFormItem from '../components/form/form-item';
 import KInput from '../components/input/input';
 import KCheckbox from '../components/checkbox/checkbox';
 import KCheckboxGroup from '../components/checkbox/checkbox-group';
+import KRadioGroup from '../components/radio/radio-group';
+import KRadio from '../components/radio/radio';
 import KButton from '../components/button/button';
+import KButtonGroup from '../components/button/button-group';
 
 export default {
   name: 'home',
   components: {
-    KForm, KFormItem, KInput, KCheckbox, KCheckboxGroup, KButton,
+    KForm, KFormItem, KInput, KCheckbox, KCheckboxGroup, KButton, KButtonGroup, KRadioGroup, KRadio,
   },
   data() {
     return {
@@ -43,6 +58,7 @@ export default {
         name: '',
         email: '',
         like: [],
+        sex: 'nan',
       },
       rules: {
         name: [
