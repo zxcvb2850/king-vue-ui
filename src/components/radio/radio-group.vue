@@ -12,6 +12,7 @@ export default {
       type: [String, Number],
       default: '',
     },
+    disabled: Boolean,
   },
   data() {
     return {};

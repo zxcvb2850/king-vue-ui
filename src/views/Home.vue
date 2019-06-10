@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-
     <k-form ref="form" :model="form" :rules="rules">
       <k-form-item label="姓名" prop="name">
         <k-input v-model="form.name"/>
@@ -17,7 +15,7 @@
           <k-checkbox label="ball">篮球</k-checkbox>
         </k-checkbox-group>
       </k-form-item>
-      <k-form-item label="性别" prop="sex">
+      <k-form-item label="性别">
         <k-radio-group v-model="form.sex">
           <k-radio label="nan">男</k-radio>
           <k-radio label="nv">女</k-radio>
@@ -27,38 +25,33 @@
         <k-button @click="handleSubmit">提交</k-button>
       </k-form-item>
     </k-form>
-
-    <k-button-group>
-      <k-button @click="handleSubmit">加</k-button>
-      <k-button @click="handleSubmit">减</k-button>
-      <k-button @click="handleSubmit">成</k-button>
-    </k-button-group>
   </div>
 </template>
 
 <script>
 import KForm from '../components/form/form';
 import KFormItem from '../components/form/form-item';
-import KInput from '../components/input/input';
+import KRadio from '../components/radio/radio';
+import KRadioGroup from '../components/radio/radio-group';
+import KButton from '../components/button/button';
+// import KButtonGroup from '../components/button/button-group';
 import KCheckbox from '../components/checkbox/checkbox';
 import KCheckboxGroup from '../components/checkbox/checkbox-group';
-import KRadioGroup from '../components/radio/radio-group';
-import KRadio from '../components/radio/radio';
-import KButton from '../components/button/button';
-import KButtonGroup from '../components/button/button-group';
+import KInput from '../components/input/input';
 
 export default {
   name: 'home',
   components: {
-    KForm, KFormItem, KInput, KCheckbox, KCheckboxGroup, KButton, KButtonGroup, KRadioGroup, KRadio,
+    KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput,
   },
   data() {
     return {
       form: {
-        name: '',
-        email: '',
+        name: 'xxx',
+        email: 'xx@xx.com',
         like: [],
         sex: 'nan',
+        radio: 1,
       },
       rules: {
         name: [
@@ -78,7 +71,6 @@ export default {
   },
   methods: {
     handleSubmit() {
-      // this.checkboxRadio = false;
       this.$refs.form.validate((valid) => {
         if (valid) {
           console.log(this.form);
@@ -87,8 +79,6 @@ export default {
           console.log('提交失败');
         }
       });
-
-      this.$Alert.info({ content: '我是提示信息 1' });
     },
   },
 };
