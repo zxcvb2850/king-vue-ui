@@ -15,7 +15,7 @@
           <k-checkbox label="ball">篮球</k-checkbox>
         </k-checkbox-group>
       </k-form-item>
-      <k-form-item label="性别">
+      <k-form-item label="性别" prop="sex">
         <k-radio-group v-model="form.sex">
           <k-radio label="nan">男</k-radio>
           <k-radio label="nv">女</k-radio>
@@ -51,7 +51,6 @@ export default {
         email: 'xx@xx.com',
         like: [],
         sex: 'nan',
-        radio: 1,
       },
       rules: {
         name: [

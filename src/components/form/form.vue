@@ -32,7 +32,7 @@ export default {
       if (field) this.fields.push(field);
     });
     this.$on('on-form-item-remove', (field) => {
-      if (field) this.fields.splice(this.fields.indexOf(field), 1);
+      if (field.prop) this.fields.splice(this.fields.indexOf(field), 1);
     });
   },
   mounted() {
@@ -48,12 +48,14 @@ export default {
         let valid = true;
         let count = 0;
         this.fields.forEach((field) => {
-          field.validate('', (err) => {
-            if (err) {
+          console.log('------', field)
+          field.validate('', (errors) => {
+            if (errors) {
               valid = false;
             }
             // eslint-disable-next-line no-plusplus
             if (++count === this.fields.length) {
+              // all finish
               resolve(valid);
               if (typeof callback === 'function') {
                 callback(valid);
