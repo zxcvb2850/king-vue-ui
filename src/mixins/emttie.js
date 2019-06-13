@@ -4,12 +4,14 @@
 
 function broadcast(componentName, eventName, params) {
   this.$children.forEach((child) => {
-    const { name } = child.$options;
+    const name = child.$options.name;
 
     if (name === componentName) {
-      child.$emit.apply(child, [...componentName, ...eventName, ...params]);
+      console.log(child)
+      // eslint-disable-next-line prefer-spread
+      child.$emit.apply(child, [eventName].concat(params));
     } else {
-      broadcast.apply(child, [...componentName, ...eventName, [...params]]);
+      broadcast.apply(child, [componentName, eventName].concat([params]));
     }
   });
 }
