@@ -7,7 +7,6 @@ function broadcast(componentName, eventName, params) {
     const name = child.$options.name;
 
     if (name === componentName) {
-      console.log(child)
       // eslint-disable-next-line prefer-spread
       child.$emit.apply(child, [eventName].concat(params));
     } else {

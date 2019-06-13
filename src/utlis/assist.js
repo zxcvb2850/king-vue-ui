@@ -93,3 +93,49 @@ export function findBrothersComponents(context, componentName, exceptMe = true) 
   }
   return res;
 }
+
+/**
+ * 深拷贝
+ * */
+function typeOf(obj) {
+  const {toString} = Object.prototype;
+  const map = {
+    '[object Boolean]': 'boolean',
+    '[object Number]': 'number',
+    '[object String]': 'string',
+    '[object Function]': 'function',
+    '[object Array]': 'array',
+    '[object Date]': 'date',
+    '[object RegExp]': 'regExp',
+    '[object Undefined]': 'undefined',
+    '[object Null]': 'null',
+    '[object Object]': 'object',
+  };
+  return map[toString.call(obj)];
+}
+
+export function deepCopy(data) {
+  const t = typeOf(data);
+  let o;
+
+  if (t === 'array') {
+    o = [];
+  } else if (t === 'object') {
+    o = {};
+  } else {
+    return data;
+  }
+
+  if (t === 'array') {
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < data.length; i++) {
+      o.push(deepCopy(data[i]));
+    }
+  } else if (t === 'object') {
+    // eslint-disable-next-line
+    for (let i in data) {
+      o[i] = deepCopy(data[i]);
+    }
+  }
+  return o;
+}

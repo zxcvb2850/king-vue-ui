@@ -34,6 +34,14 @@
       </template>
     </k-table>
     <k-button @click="handleLookTable">查看</k-button>
+
+    <k-tree :data="treeData" @on-toggle-expand="onToggleExpand" show-checkbox></k-tree>
+
+    <component-a>
+      <component-c>
+        <component-b></component-b>
+      </component-c>
+    </component-a>
   </div>
 </template>
 
@@ -41,10 +49,22 @@
 import KTable from '../components/table/table';
 import KInput from '../components/input/input';
 import KButton from '../components/button/button';
+import KTree from '../components/tree/tree';
+import componentA from './componentA';
+import componentB from './componentB';
+import componentC from './componentC';
 
 export default {
   name: '',
-  components: { KTable, KButton, KInput },
+  components: {
+    KTable,
+    KButton,
+    KInput,
+    KTree,
+    componentA,
+    componentB,
+    componentC,
+  },
   data() {
     return {
       editName: '',
@@ -102,7 +122,7 @@ export default {
           render: (h, { row, index }) => {
             if (this.editIndex === index) {
               return [
-                h('button', {
+                h(KButton, {
                   on: {
                     click: () => {
                       this.data[index].name = this.editName;
@@ -113,7 +133,7 @@ export default {
                     },
                   },
                 }, '保存'),
-                h('button', {
+                h(KButton, {
                   style: {
                     marginLeft: '6px',
                   },
@@ -125,7 +145,7 @@ export default {
                 }, '取消'),
               ];
             }
-            return h('button', {
+            return h(KButton, {
               on: {
                 click: () => {
                   this.editName = row.name;
@@ -166,6 +186,37 @@ export default {
           address: '深圳市南山区深南大道',
         },
       ],
+      treeData: [
+        {
+          title: 'parent 1',
+          expand: true,
+          children: [
+            {
+              title: 'parent 1-1',
+              expand: true,
+              children: [
+                {
+                  title: 'leaf 1-1-1',
+                },
+                {
+                  title: 'leaf 1-1-2',
+                },
+              ],
+            },
+            {
+              title: 'parent 1-2',
+              children: [
+                {
+                  title: 'leaf 1-2-1',
+                },
+                {
+                  title: 'leaf 1-2-1',
+                },
+              ],
+            },
+          ],
+        },
+      ],
     };
   },
   mounted() {
@@ -189,6 +240,9 @@ export default {
       const day = date.getDate();
 
       return `${year}-${month}-${day}`;
+    },
+    onToggleExpand(data, cloneData) {
+      console.log(data, cloneData);
     },
   },
 };
