@@ -2,6 +2,8 @@
     <button
       @click="handleClick"
       class="k-button"
+      :is="tagName"
+      v-bind="tagProps"
       :disabled="buttonDisabled"
       :type="nativeType"
       :autofocus="autofocus"
@@ -36,6 +38,18 @@ export default {
       type: String,
       default: 'button',
     },
+    to: {
+      type: String,
+      default: '',
+    },
+    href: {
+      type: String,
+      default: '',
+    },
+    target: {
+      type: String,
+      default: '_self',
+    },
     size: String,
     disabled: Boolean,
     round: Boolean,
@@ -63,6 +77,19 @@ export default {
     },
     buttonDisabled() {
       return this.disabled || (this.kForm || {}).disabled;
+    },
+    tagName() {
+      return this.to ? 'a' : 'button';
+    },
+    tagProps() {
+      let props = {};
+      if (this.to) {
+        props = {
+          target: this.target,
+          href: this.to || this.href,
+        }
+      }
+      return props;
     },
   },
   methods: {

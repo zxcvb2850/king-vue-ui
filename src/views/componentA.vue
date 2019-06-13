@@ -1,23 +1,20 @@
 <template>
     <div>
-      A
+      <p @click="handleClick">A Component</p>
       <slot></slot>
     </div>
 </template>
 
 <script>
-import { findComponentDownward, findComponentsDownward } from '../utlis/assist';
+import Emitter from '../mixins/emttie';
 
 export default {
   name: 'componentA',
-  mounted() {
-    const childrenName = findComponentDownward(this, 'componentB');
-    console.log('children', childrenName);
-    childrenName.hello();
-    const childrensName = findComponentsDownward(this, 'componentB');
-    console.log('childrens', childrensName);
-  },
+  mixins: [Emitter],
   methods: {
+    handleClick() {
+      this.broadcast('componentB', 'on-message', 'Hello');
+    },
     hello() {
       console.log('componentA Hello');
     },
