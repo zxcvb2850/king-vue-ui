@@ -5,18 +5,19 @@
           <span v-if="data.children && data.children.length && !data.expand">+</span>
           <span v-if="data.children && data.children.length && data.expand">-</span>
         </span>
-        <span>{{data.title}}</span>
         <k-checkbox
-          v-if="showCheckbox"
+          v-if="tree.showCheckbox"
           :value="data.checked"
           @input="handleCheck"
         ></k-checkbox>
+        <node-content :data="data"></node-content>
         <k-tree-node
           v-if="data.expand"
           v-for="(item, index) in data.children"
           :key="index"
           :data="item"
-          :show-checkbox="showCheckbox"
+          :show-checkbox="tree.showCheckbox"
+          :render-content="renderContent"
         ></k-tree-node>
       </li>
     </ul>
@@ -24,20 +25,18 @@
 
 <script>
 import KCheckbox from '../checkbox/checkbox';
+import NodeContent from './nodeContent';
 import { findComponentUpward } from '../../utlis/assist';
 
 export default {
   name: 'kTreeNode',
-  components: { KCheckbox },
+  components: { KCheckbox, NodeContent },
   props: {
     data: {
       type: Object,
       default: () => ({}),
     },
-    showCheckbox: {
-      type: Boolean,
-      default: false,
-    },
+    renderContent: Function,
   },
   data() {
     return {
