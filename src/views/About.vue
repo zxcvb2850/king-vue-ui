@@ -35,7 +35,18 @@
     </k-table>
     <k-button @click="handleLookTable">查看</k-button>
 
-    <k-tree :data="treeData" @on-toggle-expand="onToggleExpand" show-checkbox></k-tree>
+    <k-tree
+      :data="treeData"
+      @on-toggle-expand="onToggleExpand"
+      show-checkbox>
+      <span slot-scope="{ data }">
+        <span>{{ data.title }}</span>
+        <span>
+          <k-button @click="handleAddTree(data)">添加</k-button>
+          <k-button @click="handleRemoveTree(data)">移除</k-button>
+        </span>
+      </span>
+    </k-tree>
 
     <component-a>
       <component-c>
@@ -49,16 +60,20 @@
 import KTable from '../components/table/table';
 import KInput from '../components/input/input';
 import KButton from '../components/button/button';
+import KButtonGroup from '../components/button/button-group';
 import KTree from '../components/tree/tree';
 import componentA from './componentA';
 import componentB from './componentB';
 import componentC from './componentC';
+
+let id = 1000;
 
 export default {
   name: '',
   components: {
     KTable,
     KButton,
+    KButtonGroup,
     KInput,
     KTree,
     componentA,
@@ -242,7 +257,21 @@ export default {
       return `${year}-${month}-${day}`;
     },
     onToggleExpand(data, cloneData) {
-      console.log(data, cloneData);
+      // console.log(data, cloneData);
+    },
+    handleAddTree(data) {
+      // eslint-disable-next-line no-plusplus
+      const newChild = { id: id++, title: 'testtest', children: [] };
+      if (!data.children) {
+        this.$set(data, 'children', []);
+      }
+      data.children.push(newChild);
+    },
+    handleRemoveTree(data) {
+      /* const parent = data.parent;
+      const children = parent.data.children || parent.data;
+      const index = children.findIndex(d => d.id === data.id);
+      children.splice(index, 1); */
     },
   },
 };

@@ -5,6 +5,7 @@
       :key="index"
       :data="item"
       :show-checkbox="showCheckbox"
+      :render-content="renderContent"
     ></tree-node>
   </div>
 </template>
@@ -25,6 +26,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    renderContent: Function,
   },
   data() {
     return {
