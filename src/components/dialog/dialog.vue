@@ -24,6 +24,9 @@
 </template>
 
 <script>
+import PopupManager from './popup';
+let idSeed = 1;
+
 export default {
   name: 'kDialog',
   props: {
@@ -48,6 +51,17 @@ export default {
       default: false,
     },
   },
+  beforeMount() {
+    console.log('---------', this);
+    /* eslint-disable */
+    this._dialogId = `dialog-${idSeed++}`;
+    /* eslint-disable-end */
+    PopupManager.register(this._dialogId, this);
+  },
+  beforeDestroy() {
+    console.log(this._dialogId);
+    PopupManager.deregister(this._dialogId);
+  },
   mounted() {
     if (this.visible) {
       if (this.appendToBody) {
@@ -71,7 +85,7 @@ export default {
       } else {
         this.$el.removeEventListener('scroll', this.updatePopper);
         this.closed = true;
-        this.close()
+        this.close();
       }
     },
   },
