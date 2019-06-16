@@ -25,6 +25,14 @@
         <k-button @click="handleSubmit">提交</k-button>
       </k-form-item>
     </k-form>
+
+    <k-button @click="showDialog = true">展示</k-button>
+    <k-dialog :visible.sync="showDialog" title="提示">
+      <span>弹窗内容</span>
+      <span slot="footer">
+        <k-button @click="showDialog = false">取消</k-button>
+      </span>
+    </k-dialog>
   </div>
 </template>
 
@@ -38,11 +46,12 @@ import KButton from '../components/button/button';
 import KCheckbox from '../components/checkbox/checkbox';
 import KCheckboxGroup from '../components/checkbox/checkbox-group';
 import KInput from '../components/input/input';
+import KDialog from '../components/dialog/dialog';
 
 export default {
   name: 'home',
   components: {
-    KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput,
+    KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput, KDialog
   },
   data() {
     return {
@@ -66,6 +75,7 @@ export default {
           },
         ],
       },
+      showDialog: false,
     };
   },
   methods: {
