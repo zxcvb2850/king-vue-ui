@@ -24,6 +24,18 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+import PopupManager from './popup';
+let idSeed = 1;
+
+=======
+const dialogMask = {
+  id: 1,
+  len: 0,
+  zIndex: 1000,
+  dom: null,
+};
+>>>>>>> 506bb0e... fix：优化dialog
 export default {
   name: 'kDialog',
   props: {
@@ -48,6 +60,17 @@ export default {
       default: false,
     },
   },
+  beforeMount() {
+    console.log('---------', this);
+    /* eslint-disable */
+    this._dialogId = `dialog-${idSeed++}`;
+    /* eslint-disable-end */
+    PopupManager.register(this._dialogId, this);
+  },
+  beforeDestroy() {
+    console.log(this._dialogId);
+    PopupManager.deregister(this._dialogId);
+  },
   mounted() {
     if (this.visible) {
       if (this.appendToBody) {
@@ -71,15 +94,34 @@ export default {
       } else {
         this.$el.removeEventListener('scroll', this.updatePopper);
         this.closed = true;
-        this.close()
+        this.close();
+<<<<<<< HEAD
+=======
+
+        console.log('关闭', dialogMask.len);
+        // eslint-disable-next-line no-plusplus
+        dialogMask.len--;
+        if (!dialogMask.len && dialogMask.dom) {
+          document.body.removeChild(dialogMask.dom);
+          dialogMask.dom = null;
+        }
+>>>>>>> 506bb0e... fix：优化dialog
       }
     },
   },
   methods: {
     open() {
-      const modalDom = document.createElement('div');
-      modalDom.classList.add('v-modal');
-      document.body.appendChild(modalDom);
+      // eslint-disable-next-line no-plusplus
+      dialogMask.len++;
+      if (!dialogMask.dom) {
+        dialogMask.dom = document.createElement('div');
+        const div = dialogMask.dom;
+        div.classList.add('v-modal');
+        div.style.zIndex = dialogMask.zIndex;
+        document.body.appendChild(dialogMask.dom);
+        // eslint-disable-next-line no-plusplus
+        this.$el.style.zIndex = ++dialogMask.zIndex;
+      }
       // document.body.removeChild(modalDom);
     },
     close() {},
@@ -105,6 +147,12 @@ export default {
       this.$emit('closed');
     },
     updatePopper() {},
+  },
+  beforeDestroy() {
+    if (!dialogMask.len && dialogMask.dom) {
+      document.body.removeChild(dialogMask.dom);
+      dialogMask.dom = null;
+    }
   },
 };
 </script>

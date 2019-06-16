@@ -30,7 +30,15 @@
     <k-dialog :visible.sync="showDialog" title="提示">
       <span>弹窗内容</span>
       <span slot="footer">
+        <k-button @click="showTestDialog = true">展示</k-button>
         <k-button @click="showDialog = false">取消</k-button>
+      </span>
+    </k-dialog>
+
+    <k-dialog :visible.sync="showTestDialog" title="两个弹窗">
+      <span>弹窗内容</span>
+      <span slot="footer">
+        <span>xxxxxxxxx</span>
       </span>
     </k-dialog>
   </div>
@@ -76,6 +84,7 @@ export default {
         ],
       },
       showDialog: false,
+      showTestDialog: false,
     };
   },
   methods: {
