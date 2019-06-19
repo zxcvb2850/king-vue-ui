@@ -24,6 +24,12 @@
 </template>
 
 <script>
+const dialogMask = {
+  id: 1,
+  len: 0,
+  zIndex: 1000,
+  dom: null,
+};
 export default {
   name: 'kDialog',
   props: {
@@ -71,15 +77,31 @@ export default {
       } else {
         this.$el.removeEventListener('scroll', this.updatePopper);
         this.closed = true;
-        this.close()
+        this.close();
+
+        console.log('关闭', dialogMask.len);
+        // eslint-disable-next-line no-plusplus
+        dialogMask.len--;
+        if (!dialogMask.len && dialogMask.dom) {
+          document.body.removeChild(dialogMask.dom);
+          dialogMask.dom = null;
+        }
       }
     },
   },
   methods: {
     open() {
-      const modalDom = document.createElement('div');
-      modalDom.classList.add('v-modal');
-      document.body.appendChild(modalDom);
+      // eslint-disable-next-line no-plusplus
+      dialogMask.len++;
+      if (!dialogMask.dom) {
+        dialogMask.dom = document.createElement('div');
+        const div = dialogMask.dom;
+        div.classList.add('v-modal');
+        div.style.zIndex = dialogMask.zIndex;
+        document.body.appendChild(dialogMask.dom);
+        // eslint-disable-next-line no-plusplus
+        this.$el.style.zIndex = ++dialogMask.zIndex;
+      }
       // document.body.removeChild(modalDom);
     },
     close() {},
@@ -105,6 +127,12 @@ export default {
       this.$emit('closed');
     },
     updatePopper() {},
+  },
+  beforeDestroy() {
+    if (!dialogMask.len && dialogMask.dom) {
+      document.body.removeChild(dialogMask.dom);
+      dialogMask.dom = null;
+    }
   },
 };
 </script>
