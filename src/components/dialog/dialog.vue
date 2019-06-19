@@ -10,14 +10,14 @@
           <slot name="title">
             <span class="k-dialog__titile">{{ title }}</span>
           </slot>
-          <span v-if="showClose" @click="handleClose">x</span>
+          <span class="k-dialog__close" v-if="showClose" @click="handleClose">x</span>
         </div>
         <div class="k-dialog__body" v-if="$slots.default">
           <slot></slot>
         </div>
-      </div>
-      <div class="k-dialog__footer" v-if="$slots.footer">
-        <slot name="footer"></slot>
+        <div class="k-dialog__footer" v-if="$slots.footer">
+          <slot name="footer"></slot>
+        </div>
       </div>
     </div>
   </transition>
@@ -100,8 +100,8 @@ export default {
         div.style.zIndex = dialogMask.zIndex;
         document.body.appendChild(dialogMask.dom);
         // eslint-disable-next-line no-plusplus
-        this.$el.style.zIndex = ++dialogMask.zIndex;
       }
+      this.$el.style.zIndex = ++dialogMask.zIndex;
       // document.body.removeChild(modalDom);
     },
     close() {},
@@ -137,7 +137,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
 .k-dialog__wrapper {
   position: fixed;
   top: 0;
@@ -146,14 +146,46 @@ export default {
   bottom: 0;
   background-color: transparent;
   z-index: 1001;
-}
-  .v-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, .5);
-    z-index: 1000;
+  .k-dialog {
+    margin: 200px auto auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 520px;
+    height: 200px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background-color: #FFF;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, .2);
   }
+  .k-dialog__header {
+    display: flex;
+    .k-dialog__titile {
+      flex: 1;
+    }
+    .k-dialog__close {
+      cursor: pointer;
+      &:hover {
+        color: #5c6b77;
+      }
+    }
+  }
+  .k-dialog__body {
+    flex: 1;
+    padding: 10px;
+  }
+  .k-dialog__footer {
+    text-align: right;
+  }
+}
+.v-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 1000;
+}
 </style>
