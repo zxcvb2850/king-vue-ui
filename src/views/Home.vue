@@ -35,12 +35,27 @@
       </span>
     </k-dialog>
 
-    <k-dialog :visible.sync="showTestDialog" title="两个弹窗">
+    <k-dialog :visible.sync="showTestDialog" title="两个弹窗" appendToBody>
       <span>弹窗内容</span>
       <span slot="footer">
         <span>xxxxxxxxx</span>
       </span>
     </k-dialog>
+
+    <k-button @click="handleClick" icon="k-icon-info-circle">警告</k-button>
+    <i class="k-icon-check-circle"></i>
+    <k-icon name="appstore"></k-icon>
+    <k-alert type="info" show-icon>
+      <span>普通消息提示的文案</span>
+    </k-alert>
+    <k-alert show-icon type="success" title="成功消息提示的文案" />
+    <k-alert show-icon type="warning" title="警告消息提示的文案" />
+    <k-alert
+      show-icon
+      type="error"
+      title="错误消息提示的文案"
+      description="文字说明文字说明文字说明文字说明文字说明文字说明"
+    />
   </div>
 </template>
 
@@ -55,11 +70,14 @@ import KCheckbox from '../components/checkbox/checkbox';
 import KCheckboxGroup from '../components/checkbox/checkbox-group';
 import KInput from '../components/input/input';
 import KDialog from '../components/dialog/dialog';
+import KIcon from '../components/icon/icon';
+import KAlert from '../components/alert/alert';
 
 export default {
   name: 'home',
   components: {
-    KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput, KDialog
+    // eslint-disable-next-line max-len
+    KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput, KDialog, KIcon, KAlert,
   },
   data() {
     return {
@@ -97,6 +115,9 @@ export default {
           console.log('提交失败');
         }
       });
+    },
+    handleClick() {
+      this.$notify.info({ content: '<p>我是提示信息 1</p>' });
     },
   },
 };

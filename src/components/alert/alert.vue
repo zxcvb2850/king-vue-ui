@@ -1,70 +1,71 @@
 <template>
-    <div class="alert">
-      <div v-for="item in notices" :key="item.name">
-        <div class="alert-content">{{item.content}}</div>
+  <transition name="k-alert-fade">
+    <div v-if="visible" class="k-alert" :class="[isCenter, 'k-alert--' + type]">
+      <Icon class="k-alert__icon" :class="[isBoldTitle]" v-if="showIcon" :name="iconName"/>
+      <div class="k-alert__content">
+        <span class="k-alert__title" :class="[isBoldTitle]" v-if="$slots.title || !title">
+          <slot></slot>
+        </span>
+        <span class="k-alert__title" :class="[isBoldTitle]" v-if="title && !$slots.title">{{title}}</span>
+        <p class="k-alert__description" v-if="description || $slots.description">{{description}}</p>
       </div>
+      <i v-if="!closable" class="k-alert__closebtn k-icon-close" @click="handleClose"></i>
     </div>
+  </transition>
 </template>
 
 <script>
-let seed = 0;
+import Icon from '../icon/icon';
+import { TYPE_CLASSES_MAP } from '../../utlis/common';
 
-function getUid() {
-  // eslint-disable-next-line no-plusplus
-  return `alert_${seed++}`;
-}
 export default {
   name: 'kAlert',
+  components: { Icon },
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+    type: {
+      type: String,
+      default: 'info',
+    },
+    closable: {
+      type: Boolean,
+      default: false,
+    },
+    description: {
+      type: String,
+      default: '',
+    },
+    center: Boolean,
+    showIcon: Boolean,
+  },
   data() {
     return {
-      notices: [],
+      visible: true,
     };
   },
-  methods: {
-    add(notice) {
-      const name = getUid();
-
-      // eslint-disable-next-line no-underscore-dangle
-      const _notice = Object.assign({
-        name,
-      }, notice);
-
-      this.notices.push(_notice);
-
-      // 定时移除， 单位：秒
-      const { duration } = notice;
-      setTimeout(() => {
-        this.remove(name);
-      }, duration * 1000);
+  computed: {
+    isBoldTitle() {
+      return (this.description || this.$slots.description) ? 'is-bold' : '';
     },
-    remove(name) {
-      const { notices } = this;
-
-      const index = notices.findIndex(item => item.name === name);
-      if (index > -1) {
-        this.notices.splice(index, 1);
-      }
+    iconName() {
+      return TYPE_CLASSES_MAP[this.type] || TYPE_CLASSES_MAP.info;
+    },
+    isCenter() {
+      return this.center ? 'is-center' : '';
+    },
+  },
+  methods: {
+    handleClose() {
+      this.visible = false;
+      this.$emit('close');
     },
   },
 };
 </script>
 
 <style scoped>
-  .alert{
-    position: fixed;
-    width: 100%;
-    top: 16px;
-    left: 0;
-    text-align: center;
-    pointer-events: none;
-    color: #000;
-  }
-  .alert-content{
-    display: inline-block;
-    padding: 8px 16px;
-    background: #fff;
-    border-radius: 3px;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
-    margin-bottom: 8px;
-  }
+
 </style>
