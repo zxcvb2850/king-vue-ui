@@ -1,14 +1,14 @@
 import Vue from 'vue';
 // eslint-disable-next-line import/no-cycle
-import Alert from './alert.vue';
+import Notify from './notify.vue';
 
-Alert.newInstance = (properties) => {
+Notify.newInstance = (properties) => {
   const props = properties || {};
 
   const Instance = new Vue({
     data: props,
     render(h) {
-      return h(Alert, { props });
+      return h(Notify, { props });
     },
   });
 
@@ -27,4 +27,4 @@ Alert.newInstance = (properties) => {
   };
 };
 
-export default Alert;
+export default Notify;

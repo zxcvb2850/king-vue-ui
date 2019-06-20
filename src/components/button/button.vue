@@ -17,7 +17,7 @@
         }
       ]"
     >
-      <i class="icon" v-if="icon"></i>
+      <i :class="icon" v-if="icon"></i>
       <span v-if="$slots.default"><slot></slot></span>
     </button>
 </template>
