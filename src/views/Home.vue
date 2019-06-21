@@ -120,10 +120,26 @@ export default {
     },
     handleClick() {
       const arr = ['info', 'success', 'warning', 'error'];
+      const contentArr = [
+        '我是提示信息我是提示信息',
+        '我是提示信息我是',
+        '我是提示信息我',
+        '我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息',
+        '我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息',
+      ];
       const random = Math.floor(Math.random() * arr.length);
       // this.$notify.info({ content: '<p>我是提示信息 1</p>', duration: 5000 });
       // console.log(this);
+<<<<<<< HEAD
       this.$message({ type: arr[random], content: `我是提示信息${random}我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息`, duration: 0 });
+=======
+      this.$message({
+        type: arr[random],
+        content: contentArr[random],
+        duration: 0,
+        showClose: true,
+      });
+>>>>>>> eb5fd9f... fix: message的样式，CRLF的空格方式换为LF
     },
     handleAlertClose() {
       console.log('close');

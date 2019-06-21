@@ -1,7 +1,14 @@
 <template>
   <transition name="k-alert-fade">
     <div v-if="visible" class="k-alert" :class="[isCenter, 'k-alert--' + type]">
+<<<<<<< HEAD
       <Icon class="k-alert__icon" :class="[isBoldTitle]" v-if="showIcon" :name="iconName"/>
+=======
+      <i v-if="showIcon"
+         class="k-alert__icon"
+         :class="['k-icon-' + iconName, isBoldTitle]"
+      ></i>
+>>>>>>> 12e45f1... fix: alert 样式错误
       <div class="k-alert__content">
         <span class="k-alert__title" :class="[isBoldTitle]" v-if="$slots.title || !title">
           <slot></slot>

@@ -3,11 +3,21 @@
     <div
       v-for="message in messages"
       :key="message.name" class="k-message__item"
-      :class="'k-message__item--' + message.type"
     >
+<<<<<<< HEAD
       <i class="k-message__item__icon" :class="'k-icon-' + iconName(message.type)"></i>
       <span class="k-message__item__content">{{ message.content }}</span>
       <i class="k-message__item__close k-icon-close" @click="handleClose(message.name)"></i>
+=======
+      <div class="k-message__item__wrap" :class="'k-message__item--' + message.type">
+        <i class="k-message__item__icon" :class="'k-icon-' + iconName(message.type)"></i>
+        <span class="k-message__item__content">{{ message.content }}</span>
+        <i v-if="message.showClose"
+           class="k-message__item__close k-icon-close"
+           @click="handleClose(message.name)"
+        ></i>
+      </div>
+>>>>>>> eb5fd9f... fix: message的样式，CRLF的空格方式换为LF
     </div>
   </transition-group>
 </template>
@@ -44,6 +54,13 @@ export default {
       timer = null;
       this.remove(name);
     },
+<<<<<<< HEAD
+=======
+    beforeLeave(e) {
+      console.log(e.offsetHeight);
+      e.style.marginTop = `-${e.offsetHeight}px`;
+    },
+>>>>>>> eb5fd9f... fix: message的样式，CRLF的空格方式换为LF
     add(notice) {
       const name = getUid();
       // eslint-disable-next-line no-underscore-dangle
