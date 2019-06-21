@@ -1,18 +1,19 @@
 <template>
-  <div class="k-message">
-    <message-item
+  <transition-group tag="div" name="k-message-fade" class="k-message">
+    <div
       v-for="message in messages"
-      :key="message.name"
-      :content="message.content"
-      :type="message.type"
-      :name="message.name"
-      @close="handleClose"
-    />
-  </div>
+      :key="message.name" class="k-message__item"
+      :class="'k-message__item--' + message.type"
+    >
+      <i class="k-message__item__icon" :class="'k-icon-' + iconName(message.type)"></i>
+      <span class="k-message__item__content">{{ message.content }}</span>
+      <i class="k-message__item__close k-icon-close" @click="handleClose(message.name)"></i>
+    </div>
+  </transition-group>
 </template>
 
 <script>
-import MessageItem from './messageItem';
+import { TYPE_CLASSES_MAP } from '../../utlis/common';
 
 let seed = 0;
 // eslint-disable-next-line no-unused-vars
@@ -25,11 +26,18 @@ function getUid() {
 
 export default {
   name: 'kMessage',
-  components: { MessageItem },
   data() {
     return {
       messages: [],
+      onClose: null,
     };
+  },
+  computed: {
+    iconName() {
+      return function (type) {
+        return TYPE_CLASSES_MAP[type] || TYPE_CLASSES_MAP.info;
+      };
+    },
   },
   methods: {
     handleClose(name) {

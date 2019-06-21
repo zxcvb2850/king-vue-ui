@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Template from './message';
 
+const statusType = ['info', 'success', 'warning', 'error'];
+
 Template.Instance = (options) => {
   // eslint-disable-next-line no-param-reassign
   options = options || {};
@@ -41,14 +43,18 @@ const Message = (options) => {
       duration: 3,
     };
   }
-  // eslint-disable-next-line no-param-reassign
+  if (options.type && statusType.indexOf(options.type) === -1) {
+    // eslint-disable-next-line no-param-reassign
+    options.type = 'info';
+  }
+  // eslint-disable-next-line
   options = { duration: 3, type: 'info', ...options };
   const instance = getMessageInstance();
 
   instance.add(options);
 };
 
-['info', 'success', 'warning', 'error'].forEach((type) => {
+statusType.forEach((type) => {
   Message[type] = (options) => {
     if (typeof options === 'string') {
       // eslint-disable-next-line no-param-reassign
