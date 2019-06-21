@@ -4,7 +4,7 @@
 
 function broadcast(componentName, eventName, params) {
   this.$children.forEach((child) => {
-    const name = child.$options.name;
+    const { name } = child.$options;
 
     if (name === componentName) {
       // eslint-disable-next-line prefer-spread

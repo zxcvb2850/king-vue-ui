@@ -15,7 +15,13 @@
           <slot :row="row" :column="col" :index="index" :name="col.slot"></slot>
         </template>
         <template v-else-if="'type' in col">
-          <k-checkbox :row="row" :column="col" :index="index" :value="row[col.key]" @change="handleChange(arguments, col.key, row)"></k-checkbox>
+          <k-checkbox
+            :row="row"
+            :column="col"
+            :index="index"
+            :value="row[col.key]"
+            @change="handleChange(arguments, col.key, row)"
+          />
         </template>
         <template v-else>{{ row[col.key] }}</template>
       </td>

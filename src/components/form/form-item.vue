@@ -118,12 +118,10 @@ export default {
 
       this.kForm.model[this.prop] = this.initialValue;
     },
-    onFieldChange(val) {
-      // console.log(val);
+    onFieldChange() {
       this.validate('change');
     },
-    onFieldBlur(val) {
-      // console.log(val);
+    onFieldBlur() {
       this.validate('blur');
     },
   },

@@ -1,24 +1,6 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <!--<k-table
-      :data="tableData"
-      style="width: 100%">
-      <k-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </k-table-column>
-      <k-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </k-table-column>
-      <k-table-column
-        prop="address"
-        label="地址">
-      </k-table-column>
-    </k-table>-->
     <k-table :columns="columns" :data="data">
       <template slot-scope="{ row, index }" slot="age">
         <k-input type="text" v-model="editAge" v-if="editIndex === index" />
@@ -60,7 +42,6 @@
 import KTable from '../components/table/table';
 import KInput from '../components/input/input';
 import KButton from '../components/button/button';
-import KButtonGroup from '../components/button/button-group';
 import KTree from '../components/tree/tree';
 import componentA from './componentA';
 import componentB from './componentB';
@@ -73,7 +54,6 @@ export default {
   components: {
     KTable,
     KButton,
-    KButtonGroup,
     KInput,
     KTree,
     componentA,
@@ -257,7 +237,7 @@ export default {
       return `${year}-${month}-${day}`;
     },
     onToggleExpand(data, cloneData) {
-      // console.log(data, cloneData);
+      console.log(data, cloneData);
     },
     handleAddTree(data) {
       // eslint-disable-next-line no-plusplus
@@ -268,6 +248,7 @@ export default {
       data.children.push(newChild);
     },
     handleRemoveTree(data) {
+      console.log(data);
       /* const parent = data.parent;
       const children = parent.data.children || parent.data;
       const index = children.findIndex(d => d.id === data.id);

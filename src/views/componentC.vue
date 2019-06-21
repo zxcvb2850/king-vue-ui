@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     handleClick() {
-      const nowComponent = this.$parent.$children[0]
+      const nowComponent = this.$parent.$children[0];
       nowComponent.$emit('on-abc', 'err');
     },
   },

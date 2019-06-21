@@ -25,14 +25,39 @@
         <k-button @click="handleSubmit">提交</k-button>
       </k-form-item>
     </k-form>
-
-    <k-button @click="showDialog = true">展示</k-button>
+    <k-button-group>
+      <k-button @click="showDialog = true">展示</k-button>
+    </k-button-group>
     <k-dialog :visible.sync="showDialog" title="提示">
       <span>弹窗内容</span>
       <span slot="footer">
+        <k-button @click="showTestDialog = true">展示</k-button>
         <k-button @click="showDialog = false">取消</k-button>
       </span>
     </k-dialog>
+
+    <k-dialog :visible.sync="showTestDialog" title="两个弹窗" appendToBody>
+      <span>弹窗内容</span>
+      <span slot="footer">
+        <span>xxxxxxxxx</span>
+      </span>
+    </k-dialog>
+
+    <k-button @click="handleClick" icon="k-icon-info-circle">警告</k-button>
+    <i class="k-icon-check-circle"></i>
+    <k-icon name="appstore"></k-icon>
+    <k-alert type="info" show-icon>
+      <span>普通消息提示的文案</span>
+    </k-alert>
+    <k-alert show-icon type="success" title="成功消息提示的文案" />
+    <k-alert show-icon type="warning" title="警告消息提示的文案" />
+    <k-alert
+      show-icon
+      type="error"
+      title="错误消息提示的文案"
+      description="文字说明文字说明文字说明文字说明文字说明文字说明"
+      @close="handleAlertClose"
+    />
   </div>
 </template>
 
@@ -42,16 +67,19 @@ import KFormItem from '../components/form/form-item';
 import KRadio from '../components/radio/radio';
 import KRadioGroup from '../components/radio/radio-group';
 import KButton from '../components/button/button';
-// import KButtonGroup from '../components/button/button-group';
+import KButtonGroup from '../components/button/button-group';
 import KCheckbox from '../components/checkbox/checkbox';
 import KCheckboxGroup from '../components/checkbox/checkbox-group';
 import KInput from '../components/input/input';
 import KDialog from '../components/dialog/dialog';
+import KIcon from '../components/icon/icon';
+import KAlert from '../components/alert/alert';
 
 export default {
   name: 'home',
   components: {
-    KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput, KDialog
+    // eslint-disable-next-line max-len
+    KButtonGroup, KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput, KDialog, KIcon, KAlert,
   },
   data() {
     return {
@@ -76,6 +104,7 @@ export default {
         ],
       },
       showDialog: false,
+      showTestDialog: false,
     };
   },
   methods: {
@@ -88,6 +117,16 @@ export default {
           console.log('提交失败');
         }
       });
+    },
+    handleClick() {
+      const arr = ['info', 'success', 'warning', 'error'];
+      const random = Math.floor(Math.random() * arr.length);
+      // this.$notify.info({ content: '<p>我是提示信息 1</p>', duration: 5000 });
+      // console.log(this);
+      this.$message.success(`我是提示信息${random}我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息`);
+    },
+    handleAlertClose() {
+      console.log('close');
     },
   },
 };

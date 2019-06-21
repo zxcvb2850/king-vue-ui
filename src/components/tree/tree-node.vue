@@ -11,14 +11,16 @@
           @input="handleCheck"
         ></k-checkbox>
         <node-content :data="data"></node-content>
+        <!--eslint-disable-->
         <k-tree-node
-          v-if="data.expand"
           v-for="(item, index) in data.children"
+          v-if="data.expand"
           :key="index"
           :data="item"
           :show-checkbox="tree.showCheckbox"
           :render-content="renderContent"
         ></k-tree-node>
+        <!--eslint-enable-->
       </li>
     </ul>
 </template>

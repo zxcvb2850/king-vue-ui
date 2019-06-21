@@ -10,14 +10,14 @@
           <slot name="title">
             <span class="k-dialog__titile">{{ title }}</span>
           </slot>
-          <span v-if="showClose" @click="handleClose">x</span>
+          <span class="k-dialog__close" v-if="showClose" @click="handleClose">x</span>
         </div>
         <div class="k-dialog__body" v-if="$slots.default">
           <slot></slot>
         </div>
-      </div>
-      <div class="k-dialog__footer" v-if="$slots.footer">
-        <slot name="footer"></slot>
+        <div class="k-dialog__footer" v-if="$slots.footer">
+          <slot name="footer"></slot>
+        </div>
       </div>
     </div>
   </transition>
@@ -25,8 +25,14 @@
 
 <script>
 import PopupManager from './popup';
-let idSeed = 1;
 
+let idSeed = 1;
+const dialogMask = {
+  id: 1,
+  len: 0,
+  zIndex: 1000,
+  dom: null,
+};
 export default {
   name: 'kDialog',
   props: {
@@ -52,14 +58,12 @@ export default {
     },
   },
   beforeMount() {
-    console.log('---------', this);
     /* eslint-disable */
     this._dialogId = `dialog-${idSeed++}`;
     /* eslint-disable-end */
     PopupManager.register(this._dialogId, this);
   },
   beforeDestroy() {
-    console.log(this._dialogId);
     PopupManager.deregister(this._dialogId);
   },
   mounted() {
@@ -86,14 +90,28 @@ export default {
         this.$el.removeEventListener('scroll', this.updatePopper);
         this.closed = true;
         this.close();
+        // eslint-disable-next-line no-plusplus
+        dialogMask.len--;
+        if (!dialogMask.len && dialogMask.dom) {
+          document.body.removeChild(dialogMask.dom);
+          dialogMask.dom = null;
+        }
       }
     },
   },
   methods: {
     open() {
-      const modalDom = document.createElement('div');
-      modalDom.classList.add('v-modal');
-      document.body.appendChild(modalDom);
+      // eslint-disable-next-line no-plusplus
+      dialogMask.len++;
+      if (!dialogMask.dom) {
+        dialogMask.dom = document.createElement('div');
+        const div = dialogMask.dom;
+        div.classList.add('v-modal');
+        div.style.zIndex = dialogMask.zIndex;
+        document.body.appendChild(dialogMask.dom);
+        // eslint-disable-next-line no-plusplus
+      }
+      this.$el.style.zIndex = ++dialogMask.zIndex;
       // document.body.removeChild(modalDom);
     },
     close() {},
@@ -120,10 +138,16 @@ export default {
     },
     updatePopper() {},
   },
+  beforeDestroy() {
+    if (!dialogMask.len && dialogMask.dom) {
+      document.body.removeChild(dialogMask.dom);
+      dialogMask.dom = null;
+    }
+  },
 };
 </script>
 
-<style>
+<style lang="less">
 .k-dialog__wrapper {
   position: fixed;
   top: 0;
@@ -132,14 +156,46 @@ export default {
   bottom: 0;
   background-color: transparent;
   z-index: 1001;
-}
-  .v-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, .5);
-    z-index: 1000;
+  .k-dialog {
+    margin: 200px auto auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 520px;
+    height: 200px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background-color: #FFF;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, .2);
   }
+  .k-dialog__header {
+    display: flex;
+    .k-dialog__titile {
+      flex: 1;
+    }
+    .k-dialog__close {
+      cursor: pointer;
+      &:hover {
+        color: #5c6b77;
+      }
+    }
+  }
+  .k-dialog__body {
+    flex: 1;
+    padding: 10px;
+  }
+  .k-dialog__footer {
+    text-align: right;
+  }
+}
+.v-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 1000;
+}
 </style>

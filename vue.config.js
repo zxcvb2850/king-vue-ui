@@ -9,8 +9,8 @@ module.exports = {
           VERSION: `'${packageConf.version}'`,
           NODE_ENV: `'${process.env.NODE_ENV}'`,
         },
-      })
+      });
       return definitions;
     });
   },
-}
+};

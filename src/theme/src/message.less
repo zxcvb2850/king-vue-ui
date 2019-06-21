@@ -1,0 +1,41 @@
+@import "./mixins/color";
+@message-prefix-cls: ~"@{css-prefix}message";
+
+.@{message-prefix-cls} {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  &__item {
+    .style-color-mixin(1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 8px 16px;
+    max-width: 600px;
+    border-radius: 4px;
+    border: 1px solid #000;
+    overflow: hidden;
+    transition: opacity 0.3s, transform .4s, top 0.4s;
+
+    &__content {
+      flex: 1;
+      padding: 0 6px;
+      word-wrap: break-word;
+      font-size: 14px;
+    }
+
+    &__close {
+      cursor: pointer;
+      color: #c0c4cc;
+      font-size: 12px;
+    }
+  }
+  &-fade-enter,
+  &-fade-leave-active {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
