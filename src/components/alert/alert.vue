@@ -2,8 +2,8 @@
   <transition name="k-alert-fade">
     <div v-if="visible" class="k-alert" :class="[isCenter, 'k-alert--' + type]">
       <i v-if="showIcon"
-         class="k-message__item__icon"
-         :class="['k-icon-' + iconName(message.type), isBoldTitle]"
+         class="k-alert__icon"
+         :class="['k-icon-' + iconName, isBoldTitle]"
       ></i>
       <div class="k-alert__content">
         <span class="k-alert__title" :class="[isBoldTitle]" v-if="$slots.title || !title">
