@@ -25,8 +25,9 @@
         <k-button @click="handleSubmit">提交</k-button>
       </k-form-item>
     </k-form>
-
-    <k-button @click="showDialog = true">展示</k-button>
+    <k-button-group>
+      <k-button @click="showDialog = true">展示</k-button>
+    </k-button-group>
     <k-dialog :visible.sync="showDialog" title="提示">
       <span>弹窗内容</span>
       <span slot="footer">
@@ -55,6 +56,7 @@
       type="error"
       title="错误消息提示的文案"
       description="文字说明文字说明文字说明文字说明文字说明文字说明"
+      @close="handleAlertClose"
     />
   </div>
 </template>
@@ -65,7 +67,7 @@ import KFormItem from '../components/form/form-item';
 import KRadio from '../components/radio/radio';
 import KRadioGroup from '../components/radio/radio-group';
 import KButton from '../components/button/button';
-// import KButtonGroup from '../components/button/button-group';
+import KButtonGroup from '../components/button/button-group';
 import KCheckbox from '../components/checkbox/checkbox';
 import KCheckboxGroup from '../components/checkbox/checkbox-group';
 import KInput from '../components/input/input';
@@ -77,7 +79,7 @@ export default {
   name: 'home',
   components: {
     // eslint-disable-next-line max-len
-    KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput, KDialog, KIcon, KAlert,
+    KButtonGroup, KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput, KDialog, KIcon, KAlert,
   },
   data() {
     return {
@@ -117,7 +119,14 @@ export default {
       });
     },
     handleClick() {
-      this.$notify.info({ content: '<p>我是提示信息 1</p>' });
+      const arr = ['info', 'success', 'warning', 'error'];
+      const random = Math.floor(Math.random() * arr.length);
+      // this.$notify.info({ content: '<p>我是提示信息 1</p>', duration: 5000 });
+      // console.log(this);
+      this.$message({ type: arr[random], content: `我是提示信息${random}我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息我是提示信息`, duration: 0 });
+    },
+    handleAlertClose() {
+      console.log('close');
     },
   },
 };
