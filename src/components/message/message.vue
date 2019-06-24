@@ -60,14 +60,20 @@ export default {
       console.log(e.offsetHeight);
       e.style.marginTop = `-${e.offsetHeight}px`;
     },
+<<<<<<< HEAD
 >>>>>>> eb5fd9f... fix: message的样式，CRLF的空格方式换为LF
     add(notice) {
+=======
+    add(notice, zIndex = 1000) {
+      const dom = this.$el;
+>>>>>>> e584e54... update: dialog弹窗层级修复，message层级问题
       const name = getUid();
       // eslint-disable-next-line no-underscore-dangle
       const _notice = {
         ...notice,
         name,
       };
+      dom.style.zIndex = zIndex;
       this.messages.push(_notice);
 
       /**

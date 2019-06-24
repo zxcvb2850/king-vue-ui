@@ -28,11 +28,12 @@
     <k-button-group>
       <k-button @click="showDialog = true">展示</k-button>
     </k-button-group>
-    <k-dialog :visible.sync="showDialog" title="提示">
+    <k-dialog :visible.sync="showDialog" v-if="showDialog" title="提示">
       <span>弹窗内容</span>
       <span slot="footer">
         <k-button @click="showTestDialog = true">展示</k-button>
         <k-button @click="showDialog = false">取消</k-button>
+        <k-button @click="handleClick">警告</k-button>
       </span>
     </k-dialog>
 
@@ -147,3 +148,10 @@ export default {
   },
 };
 </script>
+
+<style>
+  #app {
+
+  }
+</style>
+

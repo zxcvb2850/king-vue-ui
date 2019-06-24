@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Template from './message';
+import PopupManager from '../../utlis/popup';
 
 const statusType = ['info', 'success', 'warning', 'error'];
 
@@ -18,8 +19,8 @@ Template.Instance = (options) => {
   const message = component.$children[0];
 
   return {
-    add(noticeProps) {
-      message.add(noticeProps);
+    add(noticeProps, zIndex) {
+      message.add(noticeProps, zIndex);
     },
     remove(name) {
       message.remove(name);
@@ -49,9 +50,10 @@ const Message = (options) => {
   }
   // eslint-disable-next-line
   options = { duration: 3, type: 'info', ...options };
+  const zIndex = PopupManager.nextZIndex();
   const instance = getMessageInstance();
 
-  instance.add(options);
+  instance.add(options, zIndex);
 };
 
 statusType.forEach((type) => {
