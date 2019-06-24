@@ -8,9 +8,9 @@
       <div class="k-dialog" ref="dialog">
         <div class="k-dialog__header">
           <slot name="title">
-            <span class="k-dialog__titile">{{ title }}</span>
+            <span class="k-dialog__title">{{ title }}</span>
           </slot>
-          <span class="k-dialog__close" v-if="showClose" @click="handleClose">x</span>
+          <i class="k-dialog__close k-icon-close" v-if="showClose" @click="handleClose"></i>
         </div>
         <div class="k-dialog__body" v-if="$slots.default">
           <slot></slot>
@@ -24,15 +24,8 @@
 </template>
 
 <script>
-import PopupManager from './popup';
+import PopupManager from '../../utlis/popup';
 
-let idSeed = 1;
-const dialogMask = {
-  id: 1,
-  len: 0,
-  zIndex: 1000,
-  dom: null,
-};
 export default {
   name: 'kDialog',
   props: {
@@ -63,14 +56,12 @@ export default {
     /* eslint-disable-end */
     PopupManager.register(this._dialogId, this);
   },
-  beforeDestroy() {
-    PopupManager.deregister(this._dialogId);
-  },
   mounted() {
     if (this.visible) {
       if (this.appendToBody) {
         document.body.appendChild(this.$el);
       }
+      this.open();
     }
   },
   watch: {
@@ -101,8 +92,7 @@ export default {
   },
   methods: {
     open() {
-      // eslint-disable-next-line no-plusplus
-      dialogMask.len++;
+
       if (!dialogMask.dom) {
         dialogMask.dom = document.createElement('div');
         const div = dialogMask.dom;
@@ -114,7 +104,9 @@ export default {
       this.$el.style.zIndex = ++dialogMask.zIndex;
       // document.body.removeChild(modalDom);
     },
-    close() {},
+    close() {
+      console.log('-------close dialog----');
+    },
     hide(cancel) {
       if (cancel !== false) {
         this.$emit('update:visible', false);
@@ -138,12 +130,9 @@ export default {
     },
     updatePopper() {},
   },
-  beforeDestroy() {
-    if (!dialogMask.len && dialogMask.dom) {
-      document.body.removeChild(dialogMask.dom);
-      dialogMask.dom = null;
-    }
-  },
+  destroyed() {
+    PopupManager.register(this._dialogId);
+  }
 };
 </script>
 
@@ -171,7 +160,7 @@ export default {
   }
   .k-dialog__header {
     display: flex;
-    .k-dialog__titile {
+    .k-dialog__title {
       flex: 1;
     }
     .k-dialog__close {
