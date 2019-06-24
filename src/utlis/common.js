@@ -4,8 +4,8 @@
 
 /* eslint-disable */
 export const TYPE_CLASSES_MAP = {
-  info: 'info-circle',
-  success: 'check-circle',
-  warning: 'warning-circle',
-  error: 'close-circle',
+  info: 'info-circle-fill',
+  success: 'check-circle-fill',
+  warning: 'warning-circle-fill',
+  error: 'close-circle-fill',
 };

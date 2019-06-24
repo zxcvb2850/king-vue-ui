@@ -9,14 +9,15 @@
     <div
       v-for="message in messages"
       :key="message.name" class="k-message__item"
-      :class="'k-message__item--' + message.type"
     >
-      <i class="k-message__item__icon" :class="'k-icon-' + iconName(message.type)"></i>
-      <span class="k-message__item__content">{{ message.content }}</span>
-      <i v-if="message.showClose"
-         class="k-message__item__close k-icon-close"
-         @click="handleClose(message.name)"
-      ></i>
+      <div class="k-message__item__wrap" :class="'k-message__item--' + message.type">
+        <i class="k-message__item__icon" :class="'k-icon-' + iconName(message.type)"></i>
+        <span class="k-message__item__content">{{ message.content }}</span>
+        <i v-if="message.showClose"
+           class="k-message__item__close k-icon-close"
+           @click="handleClose(message.name)"
+        ></i>
+      </div>
     </div>
   </transition-group>
 </template>
@@ -54,7 +55,8 @@ export default {
       this.remove(name);
     },
     beforeLeave(e) {
-      e.style.marginTop = '-56px';
+      console.log(e.offsetHeight);
+      e.style.marginTop = `-${e.offsetHeight}px`;
     },
     add(notice) {
       const name = getUid();

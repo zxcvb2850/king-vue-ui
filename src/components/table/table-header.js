@@ -5,6 +5,7 @@ export default {
       <table class='k-table__header'>
         <thead>
         {
+          // eslint-disable-next-line no-underscore-dangle
           console.log(this._l([{
             date: '2016-05-02',
             name: '王小虎',
