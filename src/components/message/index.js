@@ -44,10 +44,6 @@ const Message = (options) => {
       duration: 3,
     };
   }
-  if (options.type && statusType.indexOf(options.type) === -1) {
-    // eslint-disable-next-line no-param-reassign
-    options.type = 'info';
-  }
   // eslint-disable-next-line
   options = { duration: 3, type: 'info', ...options };
   const zIndex = PopupManager.nextZIndex();
