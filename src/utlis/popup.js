@@ -99,7 +99,7 @@ const PopupManager = {
     /**
      * todo 有待理解...
      */
-    if (dom && dom.parentNode && dom.parentNode.nodeType !==11) {
+    if (dom && dom.parentNode && dom.parentNode.nodeType !== 11) {
       dom.parentNode.appendChild(modalDom);
     } else {
       document.body.appendChild(modalDom);
@@ -116,6 +116,7 @@ const PopupManager = {
     const { modalStack } = this;
     const modalDom = getModal();
 
+    console.log(modalStack);
     // 判断是否有多个dialog
     // eslint-disable-next-line no-empty
     if (modalStack.length > 0) {
@@ -139,7 +140,8 @@ const PopupManager = {
           }
         }
       }
-    } else {
+    }
+    if (modalStack.length === 0) {
       if (this.modalFade) {
         modalDom.classList.add('v-modal-leave');
       }
@@ -155,7 +157,7 @@ const PopupManager = {
       }, 200);
     }
   },
-}
+};
 
 // 监听 zIndex 的变化
 Object.defineProperty(PopupManager, 'zIndex', {
@@ -170,6 +172,6 @@ Object.defineProperty(PopupManager, 'zIndex', {
   set(val) {
     zIndex = val;
   },
-})
+});
 
 export default PopupManager;

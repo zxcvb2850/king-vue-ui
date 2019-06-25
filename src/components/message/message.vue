@@ -58,13 +58,15 @@ export default {
       console.log(e.offsetHeight);
       e.style.marginTop = `-${e.offsetHeight}px`;
     },
-    add(notice) {
+    add(notice, zIndex = 1000) {
+      const dom = this.$el;
       const name = getUid();
       // eslint-disable-next-line no-underscore-dangle
       const _notice = {
         ...notice,
         name,
       };
+      dom.style.zIndex = zIndex;
       this.messages.push(_notice);
 
       /**
