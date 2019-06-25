@@ -44,7 +44,10 @@
       </span>
     </k-dialog>
 
-    <k-button @click="handleClick" icon="k-icon-info-circle">警告</k-button>
+    <k-button type="primary" @click="handleClick" icon="k-icon-info-circle">警告</k-button>
+    <k-button type="success" disabled @click="handleClick" icon="k-icon-info-circle">警告</k-button>
+    <k-button type="warning" @click="handleClick" icon="k-icon-info-circle">警告</k-button>
+    <k-button type="error" @click="handleClick" icon="k-icon-info-circle">警告</k-button>
     <i class="k-icon-check-circle"></i>
     <k-icon name="appstore"></k-icon>
     <k-alert type="info" show-icon>
@@ -120,7 +123,7 @@ export default {
       });
     },
     handleClick() {
-      const arr = ['info', 'success', 'warning', 'error'];
+      const arr = ['info', 'successs', 'warning', 'error', ''];
       const contentArr = [
         '我是提示信息我是提示信息',
         '我是提示信息我是',

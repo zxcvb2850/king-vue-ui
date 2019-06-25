@@ -12,7 +12,7 @@
     >
       <div class="k-message__item__wrap" :class="'k-message__item--' + message.type">
         <i class="k-message__item__icon" :class="'k-icon-' + iconName(message.type)"></i>
-        <span class="k-message__item__content">{{ message.content }}</span>
+        <span class="k-message__item__content" v-html="message.content"></span>
         <i v-if="message.showClose"
            class="k-message__item__close k-icon-close"
            @click="handleClose(message.name)"
