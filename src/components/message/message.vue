@@ -10,20 +10,20 @@
       v-for="message in messages"
       :key="message.name" class="k-message__item"
     >
-      <div class="k-message__item__wrap" :class="'k-message__item--' + message.type">
-        <i class="k-message__item__icon" :class="'k-icon-' + iconName(message.type)"></i>
-        <span class="k-message__item__content" v-html="message.content"></span>
-        <i v-if="message.showClose"
-           class="k-message__item__close k-icon-close"
-           @click="handleClose(message.name)"
-        ></i>
-      </div>
+      <k-message-item
+        :content="message.content"
+        :type="message.type"
+        :name="message.name"
+        :showClose="message.showClose"
+        :userHtmlString="message.userHtmlString"
+        @close="handleClose"
+      />
     </div>
   </transition-group>
 </template>
 
 <script>
-import { TYPE_CLASSES_MAP } from '../../utlis/common';
+import kMessageItem from './item';
 
 let seed = 0;
 // eslint-disable-next-line no-unused-vars
@@ -36,18 +36,11 @@ function getUid() {
 
 export default {
   name: 'kMessage',
+  components: { kMessageItem },
   data() {
     return {
       messages: [],
     };
-  },
-  computed: {
-    iconName() {
-      // eslint-disable-next-line
-      return function (type) {
-        return TYPE_CLASSES_MAP[type] || TYPE_CLASSES_MAP.info;
-      };
-    },
   },
   methods: {
     handleClose(name) {
@@ -59,6 +52,7 @@ export default {
       e.style.marginTop = `-${e.offsetHeight}px`;
     },
     add(notice, zIndex = 1000) {
+      console.log('----------', notice);
       const dom = this.$el;
       const name = getUid();
       // eslint-disable-next-line no-underscore-dangle

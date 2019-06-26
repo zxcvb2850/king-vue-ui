@@ -140,6 +140,16 @@ export default {
         duration: 0,
         showClose: true,
       });
+      const h = this.$createElement;
+      this.$message({
+        type: arr[random],
+        content: h('p', null, [
+          h('span', null, '内容可以是 '),
+          h('i', { style: 'color: teal' }, 'VNode'),
+        ]),
+        duration: 0,
+        showClose: true,
+      });
     },
     handleAlertClose() {
       console.log('close');
