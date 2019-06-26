@@ -1,0 +1,29 @@
+.button-size(@padding-vertical, @padding-horizontal, @font-size, @border-radius) {
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  border-radius: @border-radius;
+}
+
+.button-kind(@color, @border, @background) {
+  color: @color;
+  border-color: @border;
+  background-color: @background;
+
+  &:hover,
+  &:focus {
+    background: mix(@--color-white, @background, @--button-hover-tint-percent);
+    border-color: mix(@--color-white, @border, @--button-hover-tint-percent);
+    color: @color;
+  }
+
+  &.is-disable {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      color: @--color-white;
+      border-color: mix(@border, @--color-white);
+      background-color: mix(@background, @--color-white);
+    }
+  }
+}

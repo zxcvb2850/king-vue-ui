@@ -48,11 +48,9 @@ export default {
       this.remove(name);
     },
     beforeLeave(e) {
-      console.log(e.offsetHeight);
       e.style.marginTop = `-${e.offsetHeight}px`;
     },
     add(notice, zIndex = 1000) {
-      console.log('----------', notice);
       const dom = this.$el;
       const name = getUid();
       // eslint-disable-next-line no-underscore-dangle

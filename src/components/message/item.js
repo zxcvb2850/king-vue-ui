@@ -12,9 +12,6 @@ export default {
     name: String,
     content: [String, Object],
   },
-  mounted() {
-    console.log(this.showClose);
-  },
   computed: {
     iconName() {
       // eslint-disable-next-line
