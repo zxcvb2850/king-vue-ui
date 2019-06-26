@@ -72,7 +72,6 @@ export default {
 <<<<<<< HEAD
 =======
     beforeLeave(e) {
-      console.log(e.offsetHeight);
       e.style.marginTop = `-${e.offsetHeight}px`;
     },
 <<<<<<< HEAD
@@ -80,7 +79,6 @@ export default {
     add(notice) {
 =======
     add(notice, zIndex = 1000) {
-      console.log('----------', notice);
       const dom = this.$el;
 >>>>>>> e584e54... update: dialog弹窗层级修复，message层级问题
       const name = getUid();

@@ -44,10 +44,27 @@
       </span>
     </k-dialog>
 
-    <k-button type="primary" @click="handleClick" icon="k-icon-info-circle">警告</k-button>
-    <k-button type="success" disabled @click="handleClick" icon="k-icon-info-circle">警告</k-button>
-    <k-button type="warning" @click="handleClick" icon="k-icon-info-circle">警告</k-button>
-    <k-button type="error" @click="handleClick" icon="k-icon-info-circle">警告</k-button>
+    <p>
+      <k-button @click="handleClick" icon="k-icon-info-circle">默认按钮</k-button>
+      <k-button type="primary" @click="handleClick" icon="k-icon-info-circle">重要按钮</k-button>
+      <k-button type="success" @click="handleClick" icon="k-icon-info-circle">成功按钮</k-button>
+      <k-button type="warning" @click="handleClick" icon="k-icon-info-circle">警告按钮</k-button>
+      <k-button type="error" @click="handleClick" icon="k-icon-info-circle">失败按钮</k-button>
+    </p>
+    <p>
+      <k-button @click="handleClick">默认按钮</k-button>
+      <k-button type="primary" @click="handleClick" size="medium">重要按钮</k-button>
+      <k-button type="success" @click="handleClick" size="small">成功按钮</k-button>
+      <k-button type="warning" @click="handleClick" size="mini">警告按钮</k-button>
+      <k-button type="error" @click="handleClick" size="mini">失败按钮</k-button>
+    </p>
+    <p>
+      <k-button disabled>默认按钮</k-button>
+      <k-button disabled type="primary" size="medium">重要按钮</k-button>
+      <k-button disabled type="success" size="small">成功按钮</k-button>
+      <k-button disabled type="warning" size="mini">警告按钮</k-button>
+      <k-button disabled type="error">失败按钮</k-button>
+    </p>
     <i class="k-icon-check-circle"></i>
     <k-icon name="appstore"></k-icon>
     <k-alert type="info" show-icon>
@@ -155,6 +172,9 @@ export default {
         ]),
         duration: 0,
         showClose: true,
+        onClose: () => {
+          console.log('message closed');
+        },
       });
 >>>>>>> a8533a5... update: 优化message，支持render内容
     },
