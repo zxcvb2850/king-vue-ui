@@ -1,23 +1,34 @@
 <template>
-  <label>
-    <span>
-      <input
-        v-if="group"
-        type="checkbox"
-        :disable="disable"
-        :value="label"
-        v-model="model"
-        @change="handleChange"
-      />
-      <input
-        v-else
-        type="checkbox"
-        :disabled="disable"
-        :checked="currentValue"
-        @change="handleChange"
-      />
+  <label
+    class="k-checkbox"
+    :class="[{'is-checked': currentValue}, {'is-disabled': disable}]"
+  >
+    <span class="k-checkbox__input"
+          :class="[{'is-checked': currentValue}, {'is-disabled': disable}]">
+      <span
+        class="k-checkbox__inner">
+        <input
+          class="k-checkbox__original"
+          v-if="group"
+          type="checkbox"
+          :disable="disable"
+          :value="label"
+          v-model="model"
+          @change="handleChange"
+        />
+        <input
+          class="k-checkbox__original"
+          v-else
+          type="checkbox"
+          :disabled="disable"
+          :checked="currentValue"
+          @change="handleChange"
+        />
+      </span>
     </span>
-    <slot></slot>
+    <span class="k-checkbox__label">
+      <slot></slot>
+    </span>
   </label>
 </template>
 
@@ -99,7 +110,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>

@@ -24,7 +24,6 @@
 @--font-size-small: 13px;
 @--font-size-mini: 12px;
 @--font-weight-primary: 500;
-@--border-radius-base: 4px;
 
 @--color-primary-light: mix(@--color-white, @--color-primary, 80%);
 @--color-info-light: mix(@--color-white, @--color-info, 80%);
@@ -48,7 +47,35 @@
 @--color-primary-light-8: mix(@--color-white, @--color-primary, 80%);
 @--color-primary-light-9: mix(@--color-white, @--color-primary, 90%);
 
-//// button
+//// ZIndex
+@--index-normal: 1;
+@--index-top: 1000;
+@--index-bottom: 2000;
+
+//// Border
+@--border-color-base: #DCDFE6;
+@--border-color-light: #E4E7ED;
+@--border-color-lighter: #EBEEF5;
+@--border-color-extra-light: #F2F6FC;
+@--border-width-base: 1px;
+@--border-style-base: solid;
+@--border-radius-base: 4px;
+@--border-radius-small: 2px;
+@--border-base: @--border-width-base @--border-style-base @--border-color-base;
+// disabled
+@--checkbox-disabled-border-color: @--border-color-base;
+@--checkbox-disabled-input-fill: #edf2fc;
+@--checkbox-disabled-icon-color: @--color-font-placeholder;
+@--checkbox-disabled-checked-input-fill: @--border-color-extra-light;
+@--checkbox-disabled-checked-input-border-color: @--border-color-base;
+@--checkbox-disabled-checked-icon-color: @--color-font-placeholder;
+// checked
+@--checkbox-checked-font-color: @--color-primary;
+@--checkbox-checked-input-border-color: @--color-primary;
+@--checkbox-checked-background-color: @--color-primary;
+@--checkbox-checked-icon-color: @--color-white;
+
+//// Button
 /// size
 // default
 @--button-font-size: @--font-size-base;
@@ -100,3 +127,13 @@
 @--button-disable-background: @--color-white;
 @--button-hover-tint-percent: 20%;
 @--button-active-shade-percent: 10%;
+
+//// Checkbox
+@--checkbox-font-size: @--font-size-base;
+@--checkbox-font-color: @--color-font-gray;
+@--checkbox-font-weight: @--font-weight-primary;
+@--checkbox-input-weight: 14px;
+@--checkbox-input-height: 14px;
+@--checkbox-border-radius: @--border-radius-small;
+@--checkbox-background-color: @--color-white;
+@--checkbox-input-border: @--border-base;

@@ -25,6 +25,8 @@
         <k-button @click="handleSubmit">提交</k-button>
       </k-form-item>
     </k-form>
+    <k-checkbox v-model="isChecked">单选框</k-checkbox>
+    <k-checkbox v-model="isChecked" disable>单选框</k-checkbox>
     <k-button-group>
       <k-button @click="showDialog = true">展示</k-button>
     </k-button-group>
@@ -104,6 +106,7 @@ export default {
   },
   data() {
     return {
+      isChecked: false,
       form: {
         name: 'xxx',
         email: 'xx@xx.com',
