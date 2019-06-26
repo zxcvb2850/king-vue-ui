@@ -5,6 +5,7 @@
       :key="message.name" class="k-message__item"
     >
 <<<<<<< HEAD
+<<<<<<< HEAD
       <i class="k-message__item__icon" :class="'k-icon-' + iconName(message.type)"></i>
       <span class="k-message__item__content">{{ message.content }}</span>
       <i class="k-message__item__close k-icon-close" @click="handleClose(message.name)"></i>
@@ -18,12 +19,22 @@
         ></i>
       </div>
 >>>>>>> eb5fd9f... fix: message的样式，CRLF的空格方式换为LF
+=======
+      <k-message-item
+        :content="message.content"
+        :type="message.type"
+        :name="message.name"
+        :showClose="message.showClose"
+        :userHtmlString="message.userHtmlString"
+        @close="handleClose"
+      />
+>>>>>>> a8533a5... update: 优化message，支持render内容
     </div>
   </transition-group>
 </template>
 
 <script>
-import { TYPE_CLASSES_MAP } from '../../utlis/common';
+import kMessageItem from './item';
 
 let seed = 0;
 // eslint-disable-next-line no-unused-vars
@@ -36,12 +47,14 @@ function getUid() {
 
 export default {
   name: 'kMessage',
+  components: { kMessageItem },
   data() {
     return {
       messages: [],
       onClose: null,
     };
   },
+<<<<<<< HEAD
   computed: {
     iconName() {
       return function (type) {
@@ -49,6 +62,8 @@ export default {
       };
     },
   },
+=======
+>>>>>>> a8533a5... update: 优化message，支持render内容
   methods: {
     handleClose(name) {
       timer = null;
@@ -65,6 +80,7 @@ export default {
     add(notice) {
 =======
     add(notice, zIndex = 1000) {
+      console.log('----------', notice);
       const dom = this.$el;
 >>>>>>> e584e54... update: dialog弹窗层级修复，message层级问题
       const name = getUid();

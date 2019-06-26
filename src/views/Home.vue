@@ -143,7 +143,20 @@ export default {
         duration: 0,
         showClose: true,
       });
+<<<<<<< HEAD
 >>>>>>> eb5fd9f... fix: message的样式，CRLF的空格方式换为LF
+=======
+      const h = this.$createElement;
+      this.$message({
+        type: arr[random],
+        content: h('p', null, [
+          h('span', null, '内容可以是 '),
+          h('i', { style: 'color: teal' }, 'VNode'),
+        ]),
+        duration: 0,
+        showClose: true,
+      });
+>>>>>>> a8533a5... update: 优化message，支持render内容
     },
     handleAlertClose() {
       console.log('close');
