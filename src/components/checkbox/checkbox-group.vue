@@ -44,7 +44,7 @@ export default {
 
           if (update) {
             // eslint-disable-next-line no-param-reassign
-            child.currentValue = value.indexOf(child.label) > 0;
+            child.currentValue = value.indexOf(child.label) >= 0;
             // eslint-disable-next-line no-param-reassign
             child.group = true;
           }
