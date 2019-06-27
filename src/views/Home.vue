@@ -133,6 +133,7 @@ export default {
   },
   methods: {
     handleSubmit() {
+      console.log(this.form);
       this.$refs.form.validate((valid) => {
         if (valid) {
           console.log(this.form);

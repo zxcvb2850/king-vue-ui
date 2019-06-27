@@ -48,7 +48,6 @@ export default {
         let valid = true;
         let count = 0;
         this.fields.forEach((field) => {
-          console.log('------', field);
           field.validate('', (errors) => {
             if (errors) {
               valid = false;
