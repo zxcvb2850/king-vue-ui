@@ -48,7 +48,10 @@ export default {
         let valid = true;
         let count = 0;
         this.fields.forEach((field) => {
+<<<<<<< HEAD
           console.log('------', field)
+=======
+>>>>>>> 1b58d4f... update: checkbox style
           field.validate('', (errors) => {
             if (errors) {
               valid = false;
