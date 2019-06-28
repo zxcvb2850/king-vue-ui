@@ -3,14 +3,15 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 import Notify from './components/notification';
-import Message from './components/message/index';
+import KUI from './components/index';
 
 import './theme/index.less';
 
 Vue.config.productionTip = false;
 
 Vue.prototype.$notify = Notify;
-Vue.prototype.$message = Message;
+
+Vue.use(KUI);
 
 new Vue({
   store,

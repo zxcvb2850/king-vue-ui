@@ -9,16 +9,10 @@
   transform: translateX(-50%);
   pointer-events: none;
   &__item {
-    .style-color-mixin(1);
-
     position: relative;
     display: block;
     text-align: center;
     transition: opacity 0.3s, transform .4s, top 0.4s;
-
-    &--{
-      background-color: @--color-info-lighter;
-    }
 
     &__wrap {
       display: inline-flex;
@@ -31,6 +25,7 @@
       border-radius: 4px;
       box-shadow: 0 1px 6px rgba(0,0,0,.2);
       pointer-events: all;
+      background-color: @--color-info-lighter;
     }
     &__icon {
       font-size: 16px;
@@ -49,6 +44,9 @@
       color: #c0c4cc;
       font-size: 12px;
     }
+
+    /* 对应的样式 */
+    .style-color-mixin(1);
   }
   &-fade-enter,
   &-fade-leave-active {
