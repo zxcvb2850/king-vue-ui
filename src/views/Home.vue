@@ -85,8 +85,6 @@
 </template>
 
 <script>
-import KForm from '../components/form/form';
-import KFormItem from '../components/form/form-item';
 import KRadio from '../components/radio/radio';
 import KRadioGroup from '../components/radio/radio-group';
 import KButton from '../components/button/button';
@@ -96,13 +94,12 @@ import KCheckboxGroup from '../components/checkbox/checkbox-group';
 import KInput from '../components/input/input';
 import KDialog from '../components/dialog/dialog';
 import KIcon from '../components/icon/icon';
-import KAlert from '../components/alert/alert';
 
 export default {
   name: 'home',
   components: {
     // eslint-disable-next-line max-len
-    KButtonGroup, KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KForm, KFormItem, KInput, KDialog, KIcon, KAlert,
+    KButtonGroup, KButton, KCheckbox, KCheckboxGroup, KRadio, KRadioGroup, KInput, KDialog, KIcon,
   },
   data() {
     return {
