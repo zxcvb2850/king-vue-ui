@@ -1,13 +1,22 @@
 <template>
-  <label class="k-radio">
-    <span :class="{
+  <label
+    class="k-radio"
+    :class="[
+      { 'is-disabled' : isDisabled },
+      { 'is-checked' : model === label }
+    ]"
+  >
+    <span
+      class="k-radio__input"
+      :class="{
+      'is-disabled' : isDisabled,
       'is-checked': model === label
     }">
       <span class="k-radio__inner"></span>
       <input
         type="radio"
         ref="radio"
-        class="k-radio__input"
+        class="k-radio__original"
         :value="label"
         v-model="model"
         :disabled="isDisabled"
@@ -16,7 +25,9 @@
         @blur="handleBlur"
       />
     </span>
-    <slot>{{label}}</slot>
+    <span class="k-radio__label">
+      <slot>{{label}}</slot>
+    </span>
   </label>
 </template>
 

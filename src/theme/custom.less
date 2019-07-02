@@ -47,34 +47,24 @@
 @--color-primary-light-8: mix(@--color-white, @--color-primary, 80%);
 @--color-primary-light-9: mix(@--color-white, @--color-primary, 90%);
 
+@--disable-fill-base: #edf2fc;
+@--disabled-border-color-base: #DCDFE6;
+
 //// ZIndex
 @--index-normal: 1;
 @--index-top: 1000;
 @--index-bottom: 2000;
 
 //// Border
-@--border-color-base: #DCDFE6;
 @--border-color-light: #E4E7ED;
 @--border-color-lighter: #EBEEF5;
 @--border-color-extra-light: #F2F6FC;
 @--border-width-base: 1px;
 @--border-style-base: solid;
 @--border-radius-base: 4px;
+@--border-radius-circle: 100%;
 @--border-radius-small: 2px;
-@--border-base: @--border-width-base @--border-style-base @--border-color-base;
-// disabled
-@--checkbox-disabled-border-color: @--border-color-base;
-@--checkbox-disabled-input-fill: #edf2fc;
-@--checkbox-disabled-icon-color: @--color-font-placeholder;
-@--checkbox-disabled-checked-input-fill: @--border-color-extra-light;
-@--checkbox-disabled-checked-input-border-color: @--border-color-base;
-@--checkbox-disabled-checked-icon-color: @--color-font-placeholder;
-// checked
-@--checkbox-input-border-color-hover: @--color-primary;
-@--checkbox-checked-font-color: @--color-primary;
-@--checkbox-checked-input-border-color: @--color-primary;
-@--checkbox-checked-background-color: @--color-primary;
-@--checkbox-checked-icon-color: @--color-white;
+@--border-base: @--border-width-base @--border-style-base @--disabled-border-color-base;
 
 //// Button
 /// size
@@ -138,3 +128,41 @@
 @--checkbox-border-radius: @--border-radius-small;
 @--checkbox-background-color: @--color-white;
 @--checkbox-input-border: @--border-base;
+// disabled
+@--checkbox-disabled-border-color: @--disabled-border-color-base;
+@--checkbox-disabled-input-fill: @--disable-fill-base;
+@--checkbox-disabled-icon-color: @--color-font-placeholder;
+@--checkbox-disabled-checked-input-fill: @--border-color-extra-light;
+@--checkbox-disabled-checked-input-border-color: @--disabled-border-color-base;
+@--checkbox-disabled-checked-icon-color: @--color-font-placeholder;
+// checked
+@--checkbox-input-border-color-hover: @--color-primary;
+@--checkbox-checked-font-color: @--color-primary;
+@--checkbox-checked-input-border-color: @--color-primary;
+@--checkbox-checked-background-color: @--color-primary;
+@--checkbox-checked-icon-color: @--color-white;
+
+//// Radio
+@--radio-font-color: @--color-font-gray;
+@--radio-font-size: @--font-size-base;
+@--radio-font-weight: @--font-weight-primary;
+@--radio-border-padding: 4px;
+@--radio-border-height: 10px;
+// input
+@--radio-input-width: 14px;
+@--radio-input-height: 14px;
+@--radio-input-border-radius: @--border-radius-circle;
+@--radio-input-border: @--border-base;
+@--radio-input-background: @--color-white;
+@--radio-input-border-color-hover: @--color-primary;
+// disabled
+@--radio-disabled-input-fill: @--disable-fill-base;
+@--radio-disabled-input-border-color: @--disabled-border-color-base;
+@--radio-disabled-icon-color: @--color-white;
+@--radio-disabled-checked-input-border-color: @--color-primary;
+@--radio-disabled-checked-fill: @--disable-fill-base;
+@--radio-disabled-checked-icon-color: @--color-font-placeholder;
+// checked
+@--radio-checked-input-border-color:  @--color-primary;
+@--radio-checked-icon-color: @--color-primary;
+@--radio-checked-font-color: @--color-primary;
