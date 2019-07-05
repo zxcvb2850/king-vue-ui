@@ -1,35 +1,33 @@
 {
-  "name": "king-ui",
-  "version": "0.0.1",
-  "description": "A high quality UI components Library with Vue.js",
-  "private": true,
+  "name": "king-vue-ui",
+  "version": "1.0.0",
+  "description": "this is Vue Components and practice component",
+  "main": "src/index.js",
+  "repository": "kingui.com",
+  "author": "xiaobai2850@gmail.com",
+  "license": "MIT",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "dev": "webpack-dev-server --config build/webpack.demo.js",
+    "build:dev": "webpack --config build/webpack.config.js",
+    "build": "",
+    "test": ""
   },
   "dependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10",
-    "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-eslint": "^3.8.0",
-    "@vue/cli-plugin-unit-mocha": "^3.9.0",
-    "@vue/cli-service": "^3.8.0",
-    "@vue/eslint-config-airbnb": "^4.0.0",
-    "@vue/test-utils": "^1.0.0-beta.29",
-    "async-validator": "^1.11.2",
-    "babel-eslint": "^10.0.1",
-    "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "less": "^3.0.4",
-    "less-loader": "^4.1.0",
-    "lint-staged": "^9.0.2",
-    "vue-template-compiler": "^2.6.10"
+    "@babel/core": "^7.5.0",
+    "async-validator": "^1.11.3",
+    "clean-webpack-plugin": "^3.0.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "node-notifier": "^5.4.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "portfinder": "^1.0.20",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
   }
 }
