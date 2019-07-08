@@ -1,13 +1,79 @@
+const path = require("path");
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const {VueLoaderPlugin} = require("vue-loader");
+
 module.exports = {
-  entry: "../src/index.js",
-  output: {
-    filename: "[name].js",
-    chunkFilename: "[name].js",
-    publicPath: "dist",
+  mode: "production",
+  entry: {
+    app: ["./src/index.js"]
   },
-  devServer: {
-    contentBase: "/",
-    compress: true,
-    port: 9000,
-  }
-}
+  output: {
+    path: path.resolve(process.cwd(), "./lib"),
+    publicPath: "/dist/",
+    filename: "element-ui.common.js",
+    chunkFilename: "[id].js",
+    libraryExport: "default",
+    library: "ELEMENT",
+    libraryTarget: "commonjs2"
+  },
+  resolve: {
+    extensions: [".js", ".vue", ".json"],
+    alias: {
+      component: path.resolve(__dirname, "../src/components"),
+      "KingUI": path.resolve(__dirname, "../src")
+    },
+    modules: ["node_modules"]
+  },
+  externals: {
+    vue: {
+      root: "Vue",
+      commonjs: "vue",
+      commonjs2: "vue",
+      amd: "vue",
+    }
+  },
+  performance: {
+    hints: false
+  },
+  stats: {
+    children: false
+  },
+  optimization: {
+    minimize: false
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(jsx?|babel|es6)$/,
+        include: process.cwd(),
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+        options: {
+          compilerOptions: {
+            preserveWhitespace: false
+          }
+        }
+      },
+      {
+        test: /\.css$/,
+        loaders: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+        loader: "url-loader",
+        query: {
+          limit: 10000,
+          name: path.posix.join("static", "[name].[hash:7].[ext]")
+        }
+      }
+    ]
+  },
+  plugins: [
+    new ProgressBarPlugin(),
+    new VueLoaderPlugin()
+  ]
+};
