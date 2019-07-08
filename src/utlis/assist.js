@@ -98,7 +98,11 @@ export function findBrothersComponents(context, componentName, exceptMe = true) 
  * 深拷贝
  * */
 function typeOf(obj) {
+<<<<<<< HEAD
   const {toString} = Object.prototype;
+=======
+  const { toString } = Object.prototype;
+>>>>>>> 04a1ae1... ﻿feat: 组件的封装
   const map = {
     '[object Boolean]': 'boolean',
     '[object Number]': 'number',

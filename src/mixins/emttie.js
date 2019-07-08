@@ -4,7 +4,11 @@
 
 function broadcast(componentName, eventName, params) {
   this.$children.forEach((child) => {
+<<<<<<< HEAD
     const name = child.$options.name;
+=======
+    const { name } = child.$options;
+>>>>>>> 04a1ae1... ﻿feat: 组件的封装
 
     if (name === componentName) {
       // eslint-disable-next-line prefer-spread

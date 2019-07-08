@@ -1,5 +1,9 @@
 import Vue from 'vue';
+<<<<<<< HEAD
 import Template from './message';
+=======
+import Template from './src/message';
+>>>>>>> 04a1ae1... ﻿feat: 组件的封装
 import PopupManager from '../../utlis/popup';
 
 const statusType = ['info', 'success', 'warning', 'error'];
@@ -26,7 +30,11 @@ Template.Instance = (options) => {
       message.remove(name);
     },
   };
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> 04a1ae1... ﻿feat: 组件的封装
 
 let messageInstance;
 function getMessageInstance() {
