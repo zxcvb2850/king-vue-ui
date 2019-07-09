@@ -1,4 +1,5 @@
 const path = require("path");
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 
 function resolve(dir) {
@@ -73,6 +74,7 @@ const webpackDemoBase = {
     ]
   },
   plugins: [
+    new ProgressBarPlugin(),
     new VueLoaderPlugin(),
   ],
   node: {

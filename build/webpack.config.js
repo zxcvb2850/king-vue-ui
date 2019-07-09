@@ -1,28 +1,32 @@
 const path = require("path");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
-const {VueLoaderPlugin} = require("vue-loader");
+const { VueLoaderPlugin } = require("vue-loader");
+const TerserWebpackPlugin = require("terser-webpack-plugin");
 
-module.exports = {
+process.env.NODE_ENV = "production";
+
+const webpackConfig = {
   mode: "production",
+
   entry: {
-    app: ["./src/index.js"]
+    app: ["./src/index.js"],
   },
   output: {
-    path: path.resolve(process.cwd(), "./lib"),
+    path: path.resolve(__dirname, "../dist"),
     publicPath: "/dist/",
-    filename: "element-ui.common.js",
+    filename: "index.min.js",
     chunkFilename: "[id].js",
+    libraryTarget: "umd",
     libraryExport: "default",
-    library: "ELEMENT",
-    libraryTarget: "commonjs2"
+    library: "KingUI",
+    umdNamedDefine: true,
   },
   resolve: {
     extensions: [".js", ".vue", ".json"],
     alias: {
       component: path.resolve(__dirname, "../src/components"),
       "KingUI": path.resolve(__dirname, "../src")
-    },
-    modules: ["node_modules"]
+    }
   },
   externals: {
     vue: {
@@ -32,14 +36,16 @@ module.exports = {
       amd: "vue",
     }
   },
-  performance: {
-    hints: false
-  },
-  stats: {
-    children: false
-  },
   optimization: {
-    minimize: false
+    minimizer: [
+      new TerserWebpackPlugin({
+        terserOptions: {
+          output: {
+            comments: false,
+          }
+        }
+      })
+    ]
   },
   module: {
     rules: [
@@ -47,33 +53,23 @@ module.exports = {
         test: /\.(jsx?|babel|es6)$/,
         include: process.cwd(),
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       },
       {
         test: /\.vue$/,
-        loader: "vue-loader",
+        loader: 'vue-loader',
         options: {
           compilerOptions: {
             preserveWhitespace: false
           }
-        }
-      },
-      {
-        test: /\.css$/,
-        loaders: ["style-loader", "css-loader"]
-      },
-      {
-        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        loader: "url-loader",
-        query: {
-          limit: 10000,
-          name: path.posix.join("static", "[name].[hash:7].[ext]")
         }
       }
     ]
   },
   plugins: [
     new ProgressBarPlugin(),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
   ]
 };
+
+module.exports = webpackConfig;
