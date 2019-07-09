@@ -9,7 +9,8 @@ const createEslintRule = () => ({
   test: /\.(js|vue|jsx)/,
   loader: "eslint-loader",
   enforce: "pre",
-  include: [resolve("src", resolve("test"), resolve("examples"))],
+  // include: [resolve("src", resolve("test"), resolve("examples"))],
+  exclude: /node_modules/,
   options: {
     formatter: require("eslint-friendly-formatter"),
     emitWarning: true,

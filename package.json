@@ -12,7 +12,9 @@
     "build:style": "gulp build --gulpfile build/style-build.js",
     "king-ui:dev": "webpack --config build/webpack.dev.config.js",
     "king-ui:build": "npm run build:style && npm run king-ui:dev",
-    "king-ui:test": ""
+    "king-ui:test": "",
+    "link": "eslint --ext .js,.vue examples --ext .js,.vue src",
+    "link-fix": "eslint --fix --ext .js,.vue examples --ext .js,.vue src"
   },
   "dependencies": {
     "vue": "^2.6.10"
@@ -31,8 +33,11 @@
     "css-loader": "^3.0.0",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
     "eslint-friendly-formatter": "^4.0.1",
+    "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-loader": "^2.2.1",
+    "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-vue": "^5.2.3",
     "file-loader": "^4.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
