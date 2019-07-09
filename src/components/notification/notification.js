@@ -1,6 +1,6 @@
-import Vue from 'vue';
+import Vue from "vue";
 // eslint-disable-next-line import/no-cycle
-import Notify from './notify.vue';
+import Notify from "./notify.vue";
 
 Notify.newInstance = (properties) => {
   const props = properties || {};

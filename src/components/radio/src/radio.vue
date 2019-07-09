@@ -9,47 +9,48 @@
     <span
       class="k-radio__input"
       :class="{
-      'is-disabled' : isDisabled,
-      'is-checked': model === label
-    }">
-      <span class="k-radio__inner"></span>
+        'is-disabled' : isDisabled,
+        'is-checked': model === label
+      }"
+    >
+      <span class="k-radio__inner" />
       <input
-        type="radio"
         ref="radio"
+        v-model="model"
+        type="radio"
         class="k-radio__original"
         :value="label"
-        v-model="model"
         :disabled="isDisabled"
         @change="handleChange"
         @focus="handleFocus"
         @blur="handleBlur"
-      />
+      >
     </span>
     <span class="k-radio__label">
-      <slot>{{label}}</slot>
+      <slot>{{ label }}</slot>
     </span>
   </label>
 </template>
 
 <script>
-import Emitter from '../../../mixins/emttie';
-import { findComponentUpward } from '../../../utlis/assist';
+import Emitter from "../../../mixins/emttie";
+import { findComponentUpward } from "../../../utlis/assist";
 
 export default {
-  name: 'kRadio',
+  name: "KRadio",
   mixins: [Emitter],
   inject: {
     KForm: {
-      default: '',
+      default: "",
     },
     KFormItem: {
-      default: '',
+      default: "",
     },
   },
   props: {
     value: {
       type: String,
-      default: '',
+      default: "",
     },
     label: {
       type: [String, Number],
@@ -59,13 +60,9 @@ export default {
   data() {
     return {
       currentValue: this.value,
-      parent: findComponentUpward(this, 'kRadioGroup'), // 查找父级对应的组件
+      parent: findComponentUpward(this, "kRadioGroup"), // 查找父级对应的组件
       group: false, // 是否有group组件
     };
-  },
-  mounted() {
-    // this.updateValue();
-    // console.log(this.value, this.label);
   },
   computed: {
     model: {
@@ -74,9 +71,9 @@ export default {
       },
       set(val) {
         if (this.parent) {
-          this.dispatch('kRadioGroup', 'input', val);
+          this.dispatch("kRadioGroup", "input", val);
         } else {
-          this.$emit('input', val);
+          this.$emit("input", val);
         }
         // eslint-disable-next-line no-unused-expressions
         this.$refs.radio && (this.$refs.radio.checked = this.model === this.label);
@@ -88,10 +85,14 @@ export default {
         : this.disabled;
     },
   },
+  mounted() {
+    // this.updateValue();
+    // console.log(this.value, this.label);
+  },
   methods: {
     handleChange() {
       this.$nextTick(() => {
-        this.$emit('change', this.model);
+        this.$emit("change", this.model);
         // this.dispatch('KFormItem', 'on-form-change', this.model);
       });
     },

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Vue from 'vue';
 <<<<<<< HEAD
 import Template from './message';
@@ -5,8 +6,13 @@ import Template from './message';
 import Template from './src/message';
 >>>>>>> 04a1ae1... ﻿feat: 组件的封装
 import PopupManager from '../../utlis/popup';
+=======
+import Vue from "vue";
+import Template from "./src/message";
+import PopupManager from "../../utlis/popup";
+>>>>>>> ad8f12c... ﻿style: 格式化代码
 
-const statusType = ['info', 'success', 'warning', 'error'];
+const statusType = ["info", "success", "warning", "error"];
 
 Template.Instance = (options) => {
   // eslint-disable-next-line no-param-reassign
@@ -45,7 +51,7 @@ function getMessageInstance() {
 const Message = (options) => {
   // eslint-disable-next-line no-param-reassign
   options = options || {};
-  if (typeof options === 'string') {
+  if (typeof options === "string") {
     // eslint-disable-next-line no-param-reassign
     options = {
       content: options,
@@ -62,7 +68,7 @@ const Message = (options) => {
 
 statusType.forEach((type) => {
   Message[type] = (options) => {
-    if (typeof options === 'string') {
+    if (typeof options === "string") {
       // eslint-disable-next-line no-param-reassign
       options = {
         content: options,

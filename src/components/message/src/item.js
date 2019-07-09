@@ -1,11 +1,11 @@
-import { TYPE_CLASSES_MAP } from '../../../utlis/common';
+import { TYPE_CLASSES_MAP } from "../../../utlis/common";
 
 export default {
-  name: 'KMessageItem',
+  name: "KMessageItem",
   props: {
     type: {
       type: String,
-      default: 'info',
+      default: "info",
     },
     showClose: Boolean,
     userHtmlString: Boolean,
@@ -22,13 +22,13 @@ export default {
   },
   methods: {
     handleClose(name) {
-      this.$emit('close', name);
+      this.$emit("close", name);
     },
   },
   render() {
     return (
-      <div class={['k-message__item__wrap', `k-message__item--${this.type}`]}>
-        <i class={['k-message__item__icon', `k-icon-${this.iconName(this.type)}`]}/>
+      <div class={["k-message__item__wrap", `k-message__item--${this.type}`]}>
+        <i class={["k-message__item__icon", `k-icon-${this.iconName(this.type)}`]}/>
         {
           this.userHtmlString
             ? (<span class="k-message__item__content" domPropsInnerHTML={this.content}/>)

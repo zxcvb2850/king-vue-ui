@@ -1,11 +1,11 @@
 <template>
   <div class="k-table-column">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'kTableColumn',
+  name: "KTableColumn",
 };
 </script>

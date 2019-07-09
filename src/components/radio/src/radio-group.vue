@@ -1,16 +1,16 @@
 <template>
-    <div class="k-radio-group">
-      <slot></slot>
-    </div>
+  <div class="k-radio-group">
+    <slot />
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'kRadioGroup',
+  name: "KRadioGroup",
   props: {
     value: {
       type: [String, Number],
-      default: '',
+      default: "",
     },
     disabled: Boolean,
   },

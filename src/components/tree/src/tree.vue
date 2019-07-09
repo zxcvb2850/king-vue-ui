@@ -6,16 +6,16 @@
       :data="item"
       :show-checkbox="showCheckbox"
       :render-content="renderContent"
-    ></tree-node>
+    />
   </div>
 </template>
 
 <script>
-import TreeNode from './tree-node';
-import { deepCopy } from '../../../utlis/assist';
+import TreeNode from "./tree-node";
+import { deepCopy } from "../../../utlis/assist";
 
 export default {
-  name: 'kTree',
+  name: "KTree",
   components: { TreeNode },
   props: {
     data: {
@@ -33,13 +33,13 @@ export default {
       cloneData: [],
     };
   },
-  created() {
-    this.rebuildData();
-  },
   watch: {
     data() {
       this.rebuildData();
     },
+  },
+  created() {
+    this.rebuildData();
   },
   methods: {
     rebuildData() {

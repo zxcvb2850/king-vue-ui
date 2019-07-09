@@ -1,17 +1,17 @@
 <template>
-    <ul class="k-tree-ul">
-      <li class="k-tree-li">
-        <span @click="handleExpand">
-          <span v-if="data.children && data.children.length && !data.expand">+</span>
-          <span v-if="data.children && data.children.length && data.expand">-</span>
-        </span>
-        <k-checkbox
-          v-if="tree.showCheckbox"
-          :value="data.checked"
-          @input="handleCheck"
-        ></k-checkbox>
-        <node-content :data="data"></node-content>
-        <!--eslint-disable-->
+  <ul class="k-tree-ul">
+    <li class="k-tree-li">
+      <span @click="handleExpand">
+        <span v-if="data.children && data.children.length && !data.expand">+</span>
+        <span v-if="data.children && data.children.length && data.expand">-</span>
+      </span>
+      <k-checkbox
+        v-if="tree.showCheckbox"
+        :value="data.checked"
+        @input="handleCheck"
+      />
+      <node-content :data="data" />
+      <!--eslint-disable-->
         <k-tree-node
           v-for="(item, index) in data.children"
           v-if="data.expand"
@@ -21,17 +21,17 @@
           :render-content="renderContent"
         ></k-tree-node>
         <!--eslint-enable-->
-      </li>
-    </ul>
+    </li>
+  </ul>
 </template>
 
 <script>
-import KCheckbox from '../../checkbox/src/checkbox';
-import NodeContent from './nodeContent';
-import { findComponentUpward } from '../../../utlis/assist';
+import KCheckbox from "../../checkbox/src/checkbox";
+import NodeContent from "./nodeContent";
+import { findComponentUpward } from "../../../utlis/assist";
 
 export default {
-  name: 'kTreeNode',
+  name: "KTreeNode",
   components: { KCheckbox, NodeContent },
   props: {
     data: {
@@ -42,15 +42,15 @@ export default {
   },
   data() {
     return {
-      tree: findComponentUpward(this, 'kTree'),
+      tree: findComponentUpward(this, "kTree"),
     };
   },
   watch: {
-    'data.children': {
+    "data.children": {
       handler(data) {
         if (data) {
           const checkedAll = !data.some(item => !item.checked);
-          this.$set(this.data, 'checked', checkedAll);
+          this.$set(this.data, "checked", checkedAll);
         }
       },
       deep: true,
@@ -58,21 +58,21 @@ export default {
   },
   methods: {
     handleExpand() {
-      this.$set(this.data, 'expand', !this.data.expand);
+      this.$set(this.data, "expand", !this.data.expand);
 
       if (this.tree) {
-        this.tree.emitEvent('on-toggle-expand', this.data);
+        this.tree.emitEvent("on-toggle-expand", this.data);
       }
     },
     handleCheck(checked) {
       this.updateTreeDown(this.data, checked);
 
       if (this.tree) {
-        this.tree.emitEvent('on-check-change', this.data);
+        this.tree.emitEvent("on-check-change", this.data);
       }
     },
     updateTreeDown(data, checked) {
-      this.$set(data, 'checked', checked);
+      this.$set(data, "checked", checked);
 
       if (data.children && data.children.length) {
         data.children.forEach((item) => {

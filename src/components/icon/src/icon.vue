@@ -1,14 +1,14 @@
 <template>
-  <i :class="'k-icon-' + name"></i>
+  <i :class="'k-icon-' + name" />
 </template>
 
 <script>
 export default {
-  name: 'kIcon',
+  name: "KIcon",
   props: {
     name: {
       type: String,
-      default: '',
+      default: "",
     },
   },
 };

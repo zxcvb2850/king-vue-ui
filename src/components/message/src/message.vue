@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import KMessageItem from './item';
+import KMessageItem from "./item";
 
 let seed = 0;
 // eslint-disable-next-line no-unused-vars
@@ -36,7 +36,7 @@ function getUid() {
 }
 
 export default {
-  name: 'KMessage',
+  name: "KMessage",
   components: { KMessageItem },
   data() {
     return {
@@ -77,7 +77,7 @@ export default {
       const index = this.messages.findIndex(item => item.name === name);
       if (index > -1) {
         const options = this.messages[index];
-        if (options && options.onClose && typeof options.onClose === 'function') {
+        if (options && options.onClose && typeof options.onClose === "function") {
           options.onClose();
         }
         this.messages.splice(index, 1);

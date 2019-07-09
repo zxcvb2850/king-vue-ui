@@ -1,3 +1,3 @@
-import Alert from './src/alert';
+import Alert from "./src/alert";
 
 export default Alert;

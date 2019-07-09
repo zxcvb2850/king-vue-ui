@@ -26,56 +26,56 @@
 </template>
 
 <script>
-  export default {
-    name: 'KButton',
-    props: {
-      type: {
-        type: String,
-        default: 'default',
-      },
-      icon: {
-        type: String,
-        default: '',
-      },
-      nativeType: {
-        type: String,
-        default: 'button',
-      },
-      to: {
-        type: String,
-        default: '',
-      },
-      href: {
-        type: String,
-        default: '',
-      },
-      target: {
-        type: String,
-        default: '_self',
-      },
-      size: String,
-      disabled: Boolean,
-      round: Boolean,
-      circle: Boolean,
-      autofocus: Boolean,
+export default {
+  name: "KButton",
+  props: {
+    type: {
+      type: String,
+      default: "default",
     },
-    inject: {
-      KForm: {
-        default: '',
-      },
-      KFormItem: {
-        default: '',
-      },
+    icon: {
+      type: String,
+      default: "",
     },
-    data() {
-      return {};
+    nativeType: {
+      type: String,
+      default: "button",
     },
-    computed: {
-      _KFormItemSize() {
-        return (this.KFormItem || {}).KFormItemSize;
-      },
-      buttonSize() {
-        /* eslint-disable */
+    to: {
+      type: String,
+      default: "",
+    },
+    href: {
+      type: String,
+      default: "",
+    },
+    target: {
+      type: String,
+      default: "_self",
+    },
+    size: String,
+    disabled: Boolean,
+    round: Boolean,
+    circle: Boolean,
+    autofocus: Boolean,
+  },
+  inject: {
+    KForm: {
+      default: "",
+    },
+    KFormItem: {
+      default: "",
+    },
+  },
+  data() {
+    return {};
+  },
+  computed: {
+    _KFormItemSize() {
+      return (this.KFormItem || {}).KFormItemSize;
+    },
+    buttonSize() {
+      /* eslint-disable */
         return this.size || this._KFormItemSize;
       },
       buttonDisabled() {

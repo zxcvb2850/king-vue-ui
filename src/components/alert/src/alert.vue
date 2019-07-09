@@ -28,7 +28,6 @@
           class="k-alert__description"
         >
           {{ description }}
-          
         </p>
       </div>
       <i
@@ -41,53 +40,53 @@
 </template>
 
 <script>
-  import {TYPE_CLASSES_MAP} from '../../../utlis/common';
+import { TYPE_CLASSES_MAP } from "../../../utlis/common";
 
-  export default {
-    name: 'KAlert',
-    props: {
-      title: {
-        type: String,
-        default: '',
-      },
-      type: {
-        type: String,
-        default: 'info',
-      },
-      closable: {
-        type: Boolean,
-        default: false,
-      },
-      description: {
-        type: String,
-        default: '',
-      },
-      center: Boolean,
-      showIcon: Boolean,
+export default {
+  name: "KAlert",
+  props: {
+    title: {
+      type: String,
+      default: "",
     },
-    data() {
-      return {
-        visible: true,
-      };
+    type: {
+      type: String,
+      default: "info",
     },
-    computed: {
-      isBoldTitle() {
-        return (this.description || this.$slots.description) ? 'is-bold' : '';
-      },
-      iconName() {
-        return TYPE_CLASSES_MAP[this.type] || TYPE_CLASSES_MAP.info;
-      },
-      isCenter() {
-        return this.center ? 'is-center' : '';
-      },
+    closable: {
+      type: Boolean,
+      default: false,
     },
-    methods: {
-      handleClose() {
-        this.visible = false;
-        this.$emit('close');
-      },
+    description: {
+      type: String,
+      default: "",
     },
-  };
+    center: Boolean,
+    showIcon: Boolean,
+  },
+  data() {
+    return {
+      visible: true,
+    };
+  },
+  computed: {
+    isBoldTitle() {
+      return (this.description || this.$slots.description) ? "is-bold" : "";
+    },
+    iconName() {
+      return TYPE_CLASSES_MAP[this.type] || TYPE_CLASSES_MAP.info;
+    },
+    isCenter() {
+      return this.center ? "is-center" : "";
+    },
+  },
+  methods: {
+    handleClose() {
+      this.visible = false;
+      this.$emit("close");
+    },
+  },
+};
 </script>
 
 <style scoped>

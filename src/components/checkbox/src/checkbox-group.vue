@@ -1,15 +1,15 @@
 <template>
-    <div class="k-checkbox-group">
-      <slot></slot>
-    </div>
+  <div class="k-checkbox-group">
+    <slot />
+  </div>
 </template>
 
 <script>
-import Emitter from '../../mixins/emttie';
-import { findComponentsDownward } from '../../utlis/assist';
+import Emitter from "../../../mixins/emttie";
+import { findComponentsDownward } from "../../../utlis/assist";
 
 export default {
-  name: 'KCheckboxGroup',
+  name: "KCheckboxGroup",
   mixins: [Emitter],
   props: {
     value: {
@@ -25,17 +25,17 @@ export default {
       childrens: [],
     };
   },
-  mounted() {
-    this.updateModel();
-  },
   watch: {
     value() {
       this.updateModel(true);
     },
   },
+  mounted() {
+    this.updateModel();
+  },
   methods: {
     updateModel(update) {
-      this.childrens = findComponentsDownward(this, 'KCheckbox');
+      this.childrens = findComponentsDownward(this, "KCheckbox");
       if (this.childrens) {
         const { value } = this;
         this.childrens.forEach((child) => {
@@ -53,9 +53,9 @@ export default {
     },
     change(data) {
       this.currentValue = data;
-      this.$emit('input', data);
-      this.$emit('change', data);
-      this.dispatch('KFormItem', 'on-form-change', data);
+      this.$emit("input", data);
+      this.$emit("change", data);
+      this.dispatch("KFormItem", "on-form-change", data);
     },
   },
 };

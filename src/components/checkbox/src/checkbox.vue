@@ -34,80 +34,80 @@
 </template>
 
 <script>
-  import Emitter from '../../../mixins/emttie';
-  import {findComponentUpward} from '../../../utlis/assist';
+import Emitter from "../../../mixins/emttie";
+import { findComponentUpward } from "../../../utlis/assist";
 
-  export default {
-    name: 'KCheckbox',
-    mixins: [Emitter],
-    props: {
-      disable: {
-        type: Boolean,
-        default: false,
-      },
-      value: {
-        type: [String, Number, Boolean],
-        default: false,
-      },
-      trueValue: {
-        type: [String, Number, Boolean],
-        default: true,
-      },
-      falseValue: {
-        type: [String, Number, Boolean],
-        default: false,
-      },
-      label: [String, Number, Boolean],
+export default {
+  name: "KCheckbox",
+  mixins: [Emitter],
+  props: {
+    disable: {
+      type: Boolean,
+      default: false,
     },
-    data() {
-      return {
-        currentValue: this.value,
-        model: [],
-        group: false,
-        parent: null,
-      };
+    value: {
+      type: [String, Number, Boolean],
+      default: false,
     },
-    watch: {
-      value(val) {
-        if (val === this.trueValue || val === this.falseValue) {
-          this.updateModel();
-        } else {
-          // eslint-disable-next-line no-throw-literal
-          throw 'Value should be trueValue or falseValue.';
-        }
-      },
+    trueValue: {
+      type: [String, Number, Boolean],
+      default: true,
     },
-    mounted() {
-      this.parent = findComponentUpward(this, 'KCheckboxGroup');
-      if (this.parent) {
-        this.group = true;
-      }
-      if (this.group) {
-        this.parent.updateModel(true);
-      } else {
+    falseValue: {
+      type: [String, Number, Boolean],
+      default: false,
+    },
+    label: [String, Number, Boolean],
+  },
+  data() {
+    return {
+      currentValue: this.value,
+      model: [],
+      group: false,
+      parent: null,
+    };
+  },
+  watch: {
+    value(val) {
+      if (val === this.trueValue || val === this.falseValue) {
         this.updateModel();
+      } else {
+        // eslint-disable-next-line no-throw-literal
+        throw "Value should be trueValue or falseValue.";
       }
     },
-    methods: {
-      handleChange(event) {
-        if (this.disable) return false;
+  },
+  mounted() {
+    this.parent = findComponentUpward(this, "KCheckboxGroup");
+    if (this.parent) {
+      this.group = true;
+    }
+    if (this.group) {
+      this.parent.updateModel(true);
+    } else {
+      this.updateModel();
+    }
+  },
+  methods: {
+    handleChange(event) {
+      if (this.disable) return false;
 
-        const {checked} = event.target;
-        this.currentValue = checked;
+      const { checked } = event.target;
+      this.currentValue = checked;
 
-        const value = checked ? this.trueValue : this.falseValue;
-        this.$emit('input', value);
-        if (this.group) {
-          this.parent.change(this.model);
-        } else {
-          this.$emit('change', value);
-          this.dispatch('KFormItem', 'on-form-change', value);
-        }
-        return true;
-      },
-      updateModel() {
-        this.currentValue = this.value === this.trueValue;
-      },
+      const value = checked ? this.trueValue : this.falseValue;
+      this.$emit("input", value);
+      if (this.group) {
+        this.parent.change(this.model);
+      } else {
+        this.$emit("change", value);
+        this.dispatch("KFormItem", "on-form-change", value);
+      }
+      return true;
     },
-  };
+    updateModel() {
+      this.currentValue = this.value === this.trueValue;
+    },
+  },
+};
 </script>

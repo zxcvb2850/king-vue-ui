@@ -5,18 +5,18 @@
     @after-leave="afterLeave"
   >
     <div v-show="visible" class="k-dialog" @click.self="handleWrapperClick">
-      <div class="k-dialog__wrapper" ref="dialog">
+      <div ref="dialog" class="k-dialog__wrapper">
         <div class="k-dialog__header">
           <slot name="title">
             <span class="k-dialog__title">{{ title }}</span>
           </slot>
-          <i class="k-dialog__close k-icon-close" v-if="showClose" @click="handleClose"></i>
+          <i v-if="showClose" class="k-dialog__close k-icon-close" @click="handleClose" />
         </div>
-        <div class="k-dialog__body" v-if="$slots.default">
-          <slot></slot>
+        <div v-if="$slots.default" class="k-dialog__body">
+          <slot />
         </div>
-        <div class="k-dialog__footer" v-if="$slots.footer">
-          <slot name="footer"></slot>
+        <div v-if="$slots.footer" class="k-dialog__footer">
+          <slot name="footer" />
         </div>
       </div>
     </div>
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import PopupManager from '../../../utlis/popup';
+import PopupManager from "../../../utlis/popup";
 
 let idSeed = 1;
 
 export default {
-  name: 'kDialog',
+  name: "KDialog",
   props: {
     // dialog是否展示
     visible: {
@@ -39,7 +39,7 @@ export default {
     // dialog标题
     title: {
       type: String,
-      default: '',
+      default: "",
     },
     // 是否展示关闭按钮
     showClose: {

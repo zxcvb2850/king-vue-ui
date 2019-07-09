@@ -1,9 +1,9 @@
 <template>
-    <div class="alert">
-      <div v-for="item in notices" :key="item.name">
-        <div class="alert-content" v-html="item.content"></div>
-      </div>
+  <div class="alert">
+    <div v-for="item in notices" :key="item.name">
+      <div class="alert-content" v-html="item.content" />
     </div>
+  </div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ function getUid() {
   return `alert_${seed++}`;
 }
 export default {
-  name: 'KAlert',
+  name: "KAlert",
   data() {
     return {
       notices: [],

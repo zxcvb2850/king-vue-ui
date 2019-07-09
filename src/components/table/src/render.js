@@ -13,8 +13,8 @@ export default {
       column: ctx.props.column,
       index: ctx.props.index,
     };
-    if (ctx.props.type === 'selection') {
-      return ctx.props.render('input', params);
+    if (ctx.props.type === "selection") {
+      return ctx.props.render("input", params);
     }
 
     return ctx.props.render(h, params);

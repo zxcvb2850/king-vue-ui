@@ -84,7 +84,7 @@ const PopupManager = {
     const modalDom = getModal();
     // 添加 vue 动画过渡css
     if (this.modalFade && !hasModal) {
-      modalDom.classList.add('v-modal-enter');
+      modalDom.classList.add("v-modal-enter");
     }
     // 如果额外有class的话，则添加
     if (modalClass) {
@@ -93,7 +93,7 @@ const PopupManager = {
     }
     // 动画结束移除class
     setTimeout(() => {
-      modalDom.classList.remove('v-modal-enter');
+      modalDom.classList.remove("v-modal-enter");
     }, 200);
 
     /**
@@ -107,7 +107,7 @@ const PopupManager = {
     if (zIndex) {
       modalDom.style.zIndex = zIndex;
     }
-    modalDom.style.display = '';
+    modalDom.style.display = "";
     // 保存当前状态
     this.modalStack.push({ id, zIndex, modalClass });
   },
@@ -143,24 +143,24 @@ const PopupManager = {
     }
     if (modalStack.length === 0) {
       if (this.modalFade) {
-        modalDom.classList.add('v-modal-leave');
+        modalDom.classList.add("v-modal-leave");
       }
       setTimeout(() => {
         // 如果没有dialog了，则移除v-modal
         if (modalStack.length === 0) {
           if (modalDom.parentNode) modalDom.parentNode.removeChild(modalDom);
-          modalDom.style.display = 'node';
+          modalDom.style.display = "node";
           PopupManager.modalDom = null;
         }
         // 移除过渡动画class
-        modalDom.classList.remove('v-modal-leave');
+        modalDom.classList.remove("v-modal-leave");
       }, 200);
     }
   },
 };
 
 // 监听 zIndex 的变化
-Object.defineProperty(PopupManager, 'zIndex', {
+Object.defineProperty(PopupManager, "zIndex", {
   configurable: true,
   get() {
     if (!hasInitZIndex) {

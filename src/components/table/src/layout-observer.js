@@ -13,7 +13,7 @@ export default {
         layout = this.table.layout;
       }
       if (!layout) {
-        throw new Error('Can not find table layout.');
+        throw new Error("Can not find table layout.");
       }
       return layout;
     },

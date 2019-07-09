@@ -1,3 +1,3 @@
-import FormItem from '../form/src/form-item';
+import FormItem from "../form/src/form-item";
 
 export default FormItem;

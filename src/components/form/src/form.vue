@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'KForm',
+  name: "KForm",
   provide() {
     return {
       KForm: this,
@@ -29,10 +29,10 @@ export default {
     };
   },
   created() {
-    this.$on('on-form-item-add', (field) => {
+    this.$on("on-form-item-add", (field) => {
       if (field) this.fields.push(field);
     });
-    this.$on('on-form-item-remove', (field) => {
+    this.$on("on-form-item-remove", (field) => {
       if (field.prop) this.fields.splice(this.fields.indexOf(field), 1);
     });
   },
@@ -49,7 +49,7 @@ export default {
         let valid = true;
         let count = 0;
         this.fields.forEach((field) => {
-          field.validate('', (errors) => {
+          field.validate("", (errors) => {
             if (errors) {
               valid = false;
             }
@@ -57,7 +57,7 @@ export default {
             if (++count === this.fields.length) {
               // all finish
               resolve(valid);
-              if (typeof callback === 'function') {
+              if (typeof callback === "function") {
                 callback(valid);
               }
             }
