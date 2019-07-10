@@ -12,7 +12,7 @@
     "build:style": "gulp build --gulpfile build/style-build.js",
     "king-ui:dev": "webpack --config build/webpack.dev.config.js",
     "king-ui:build": "npm run build:style && npm run king-ui:dev",
-    "king-ui:test": "",
+    "king-ui:test": "npm run build:style && karma start test/unit/karma.conf.js --single-run",
     "link": "eslint --ext .js,.vue examples --ext .js,.vue src",
     "link-fix": "eslint --fix --ext .js,.vue examples --ext .js,.vue src"
   },
