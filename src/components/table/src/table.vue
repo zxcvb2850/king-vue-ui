@@ -1,37 +1,62 @@
 <template>
-  <table>
-    <thead>
-      <tr>
-        <th v-for="(col,index) in columns" :key="index">
-          {{ col.title }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(row, index) in data" :key="index">
-        <td v-for="(col, _index) in columns" :key="_index">
-          <template v-if="'render' in col">
-            <Render :row="row" :column="col" :index="index" :render="col.render" />
-          </template>
-          <template v-else-if="'slot' in col">
-            <slot :row="row" :column="col" :index="index" :name="col.slot"></slot>
-          </template>
-          <template v-else-if="'type' in col">
-            <k-checkbox
-              :row="row"
-              :column="col"
-              :index="index"
-              :value="row[col.key]"
-              @change="handleChange(arguments, col.key, row)"
-            />
-          </template>
-          <template v-else>
-            {{ row[col.key] }}
-          </template>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div :class="{'is-center' : center}" class="k-table">
+    <div class="k-table-head">
+      <table ref="tableHeader" class="table-fixed">
+        <colgroup>
+          <col v-for="(col, index) in columns" :key="index" :width="setCellWidth(col)" />
+          <col v-if="scrollWidth" :width="scrollWidth" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th
+              v-for="(head, index) in columns"
+              :key="index"
+              class="k-table-th"
+            >
+              {{ head.title }}
+            </th>
+            <th v-if="scrollWidth"></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div ref="tableBodyRef" class="k-table-body" :style="bodyStyle">
+      <table v-if="data.length" ref="tableBody" class="table-fixed">
+        <colgroup>
+          <col v-for="(col, index) in columns" :key="index" :width="setCellWidth(col)" />
+        </colgroup>
+        <tbody>
+          <tr v-for="(row, index) in data" :key="index">
+            <td
+              v-for="(col, _index) in columns"
+              :key="_index"
+              :class="index%2 === 0? 'even' : 'odd'"
+              class="k-table-td"
+            >
+              <template v-if="'render' in col">
+                <Render :row="row" :column="col" :index="index" :render="col.render" />
+              </template>
+              <template v-else-if="'slot' in col">
+                <slot :row="row" :column="col" :index="index" :name="col.slot"></slot>
+              </template>
+              <template v-else-if="'type' in col">
+                <k-checkbox
+                  :row="row"
+                  :column="col"
+                  :index="index"
+                  :value="row[col.key]"
+                  @change="handleChange(arguments, col.key, row)"
+                />
+              </template>
+              <template v-else>
+                {{ row[col.key] }}
+              </template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -52,10 +77,25 @@ export default {
       default: () => [],
     },
     size: String,
+    center: Boolean,
   },
   data() {
     return {
+      scrollWidth: 0, // 是否有滚动条,如果有则是滚动条的宽度
     };
+  },
+  computed: {
+    bodyStyle() {
+      const style = {};
+      if (this.height !== 0) {
+        const { height } = this;
+        if (this.height) {
+          style.height = `${height}px`;
+          style.overflowY = `auto`;
+        }
+      }
+      return style;
+    },
   },
   methods: {
     handleChange(args, name, row) {
@@ -63,11 +103,27 @@ export default {
       row[name] = args[0];
       return true;
     },
+    // 设置单元格宽度
+    setCellWidth(col) {
+      let width = "";
+      if (col.width) {
+        width = col.width;
+      }
+      return width;
+    },
+    // 是否有滚动条
+    isScroll() {
+      const tableHeader = this.data.length ? this.$refs.tableHeader : 0;
+      const tableBody = this.data.length ? this.$refs.tableBody : 0;
+      const hWidth = tableHeader.scrollWidth ? tableHeader.scrollWidth : 0;
+      const bWidth = tableBody.scrollWidth ? tableBody.scrollWidth : 0;
+      this.scrollWidth = hWidth - bWidth;
+    },
   },
 };
 </script>
 
-<style>
+<style lang="less">
   table{
     width: 100%;
     border-collapse: collapse;
@@ -75,15 +131,17 @@ export default {
     empty-cells: show;
     border: 1px solid #e9e9e9;
   }
-  table th{
-    background: #f7f7f7;
-    color: #5c6b77;
-    font-weight: 600;
-    white-space: nowrap;
-  }
   table td, table th{
     padding: 8px 16px;
     border: 1px solid #e9e9e9;
     text-align: left;
+  }
+  .is-center {
+    text-align: center;
+  }
+
+  .table-fixed {
+    table-layout: fixed;
+    width: 100%;
   }
 </style>
