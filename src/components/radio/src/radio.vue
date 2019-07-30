@@ -13,7 +13,7 @@
         'is-checked': model === label
       }"
     >
-      <span class="k-radio__inner" />
+      <span class="k-radio__inner"></span>
       <input
         ref="radio"
         v-model="model"
@@ -24,7 +24,7 @@
         @change="handleChange"
         @focus="handleFocus"
         @blur="handleBlur"
-      >
+      />
     </span>
     <span class="k-radio__label">
       <slot>{{ label }}</slot>

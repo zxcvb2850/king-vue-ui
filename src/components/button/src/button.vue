@@ -20,8 +20,10 @@
     <i
       v-if="icon"
       :class="icon"
-    />
-    <span v-if="$slots.default"><slot /></span>
+    ></i>
+    <span v-if="$slots.default">
+      <slot></slot>
+    </span>
   </button>
 </template>
 

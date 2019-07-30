@@ -1,6 +1,6 @@
 <template>
   <div class="k-table-column">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 

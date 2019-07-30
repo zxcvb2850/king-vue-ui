@@ -1,6 +1,6 @@
 <template>
   <div class="k-checkbox-group">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 

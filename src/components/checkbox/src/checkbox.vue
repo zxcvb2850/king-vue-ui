@@ -16,7 +16,7 @@
           :disable="disable"
           :value="label"
           @change="handleChange"
-        >
+        />
         <input
           v-else
           class="k-checkbox__original"
@@ -24,11 +24,11 @@
           :disabled="disable"
           :checked="currentValue"
           @change="handleChange"
-        >
+        />
       </span>
     </span>
     <span class="k-checkbox__label">
-      <slot />
+      <slot></slot>
     </span>
   </label>
 </template>

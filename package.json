@@ -10,7 +10,7 @@
     "dev": "webpack-dev-server --config build/webpack.demo.dev.js",
     "build:dev": "webpack --config build/webpack.demo.build.js",
     "build:style": "gulp build --gulpfile build/style-build.js",
-    "king-ui:dev": "webpack --config build/webpack.dev.config.js",
+    "king-ui:dev": "webpack --config build/webpack.config.js",
     "king-ui:build": "npm run build:style && npm run king-ui:dev",
     "king-ui:test": "npm run build:style && karma start test/unit/karma.conf.js --single-run",
     "link": "eslint --ext .js,.vue examples --ext .js,.vue src",

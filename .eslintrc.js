@@ -42,6 +42,15 @@ module.exports = {
     "quotes": ["error", "double", {
       "avoidEscape": true,
       "allowTemplateLiterals": true
+    }],
+    "vue/singleline-html-element-content-newline": 0,
+    "vue/html-self-closing": ["error", {
+      "html": {
+        normal: "never",
+        void: "always"
+      },
+      "svg": "always",
+      "math": "always"
     }]
   },
 };

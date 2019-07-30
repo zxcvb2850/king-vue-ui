@@ -14,7 +14,7 @@
             <Render :row="row" :column="col" :index="index" :render="col.render" />
           </template>
           <template v-else-if="'slot' in col">
-            <slot :row="row" :column="col" :index="index" :name="col.slot" />
+            <slot :row="row" :column="col" :index="index" :name="col.slot"></slot>
           </template>
           <template v-else-if="'type' in col">
             <k-checkbox

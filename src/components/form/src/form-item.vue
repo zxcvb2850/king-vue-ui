@@ -9,7 +9,7 @@
       {{ label }}
     </label>
     <div>
-      <slot />
+      <slot></slot>
       <div
         v-if="validateState === 'error'"
         class="k-form-item-message"

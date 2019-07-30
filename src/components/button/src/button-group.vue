@@ -1,6 +1,6 @@
 <template>
   <div class="k-button-group">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 

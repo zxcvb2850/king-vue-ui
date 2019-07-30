@@ -1,8 +1,6 @@
 <template>
   <div class="wrap">
-    <k-alert show-close>
-      xxxxxxxxxxxx
-    </k-alert>
+    <k-alert show-close title="title" description="test description" />
     <k-button type="primary" @click="showMessage">
       默认按钮
     </k-button>

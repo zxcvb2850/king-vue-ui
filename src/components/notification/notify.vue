@@ -1,7 +1,7 @@
 <template>
   <div class="alert">
     <div v-for="item in notices" :key="item.name">
-      <div class="alert-content" v-html="item.content" />
+      <div class="alert-content" v-html="item.content"></div>
     </div>
   </div>
 </template>

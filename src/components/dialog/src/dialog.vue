@@ -10,13 +10,13 @@
           <slot name="title">
             <span class="k-dialog__title">{{ title }}</span>
           </slot>
-          <i v-if="showClose" class="k-dialog__close k-icon-close" @click="handleClose" />
+          <i v-if="showClose" class="k-dialog__close k-icon-close" @click="handleClose"></i>
         </div>
         <div v-if="$slots.default" class="k-dialog__body">
-          <slot />
+          <slot></slot>
         </div>
         <div v-if="$slots.footer" class="k-dialog__footer">
-          <slot name="footer" />
+          <slot name="footer"></slot>
         </div>
       </div>
     </div>

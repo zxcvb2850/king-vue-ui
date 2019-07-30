@@ -1,6 +1,6 @@
 <template>
   <div class="k-radio-group">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 

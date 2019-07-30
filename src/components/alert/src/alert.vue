@@ -9,32 +9,21 @@
         v-if="showIcon"
         class="k-alert__icon"
         :class="['k-icon-' + iconName, isBoldTitle]"
-      />
+      ></i>
       <div class="k-alert__content">
-        <span
-          v-if="$slots.title || !title"
-          :class="[isBoldTitle]"
-          class="k-alert__title"
-        >
-          <slot />
+        <span v-if="title || $slots.title" class="k-alert__title" :class="[ isBoldTitle ]">
+          <slot name="title">{{ title }}</slot>
         </span>
-        <span
-          v-if="title && !$slots.title"
-          class="k-alert__title"
-          :class="[isBoldTitle]"
-        >{{ title }}</span>
-        <p
-          v-if="description || $slots.description"
-          class="k-alert__description"
-        >
-          {{ description }}
+        <p v-if="$slots.default && !description" class="k-alert__description">
+          <slot></slot>
         </p>
+        <p v-if="description && !$slots.default" class="k-alert__description">{{ description }}</p>
       </div>
       <i
         v-if="!closable"
         class="k-alert__closebtn k-icon-close"
         @click="handleClose"
-      />
+      ></i>
     </div>
   </transition>
 </template>

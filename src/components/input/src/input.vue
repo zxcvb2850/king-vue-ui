@@ -4,7 +4,7 @@
     :value="currentValue"
     @input="handleInput"
     @blur="handleBlur"
-  >
+  />
 </template>
 
 <script>
