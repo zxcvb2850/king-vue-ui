@@ -43,6 +43,7 @@ module.exports = {
       "avoidEscape": true,
       "allowTemplateLiterals": true
     }],
+    "no-param-reassign": ["error", { "props": false }],
     "vue/singleline-html-element-content-newline": 0,
     "vue/html-self-closing": ["error", {
       "html": {

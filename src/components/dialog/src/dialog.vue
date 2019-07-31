@@ -1,6 +1,6 @@
 <template>
   <transition
-    name="dialog-translate"
+    name="k-dialog-translate"
     @after-enter="afterEnter"
     @after-leave="afterLeave"
   >
@@ -25,6 +25,7 @@
 
 <script>
 import PopupManager from "../../../utlis/popup";
+import { addClass, removeClass } from "../../../utlis/dom";
 
 let idSeed = 1;
 
@@ -48,6 +49,11 @@ export default {
     },
     // 是否点击modal关闭弹窗
     clickOnClickModal: {
+      type: Boolean,
+      default: true,
+    },
+    // 是否锁定滚动条
+    lockScroll: {
       type: Boolean,
       default: true,
     },
@@ -130,6 +136,10 @@ export default {
           this._closing = false;
         }
         PopupManager.openModal(this._dialogId, PopupManager.nextZIndex(), this.modalAppendToBody ? undefined : dom, null, true);
+        if (this.lockScroll) {
+          const body = document.querySelector('body');
+          addClass(body, "k-popup-parent--hidden");
+        }
         dom.style.zIndex = PopupManager.nextZIndex();
         this.opened = true;
 
@@ -148,6 +158,11 @@ export default {
       this._closing = true;
 
       this.onClose && this.onClose();
+
+      if (this.lockScroll) {
+        const body = document.querySelector('body');
+        removeClass(body, "k-popup-parent--hidden");
+      }
 
       this.opened = false;
       this.doAfterClose();

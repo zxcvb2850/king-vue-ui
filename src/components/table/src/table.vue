@@ -76,6 +76,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    height: {
+      type: [Number, String],
+      default: 0,
+    },
     size: String,
     center: Boolean,
   },
@@ -90,12 +94,24 @@ export default {
       if (this.height !== 0) {
         const { height } = this;
         if (this.height) {
-          style.height = `${height}px`;
+          style.height = height.indexOf("px") > -1 ? height : `${height}px`;
           style.overflowY = `auto`;
         }
       }
       return style;
     },
+  },
+  watch: {
+    data() {
+      this.$nextTick(() => {
+        this.isScroll();
+      });
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.isScroll();
+    });
   },
   methods: {
     handleChange(args, name, row) {
