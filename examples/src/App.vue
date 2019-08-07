@@ -9,6 +9,19 @@
     </k-button>
     <k-checkbox>单选框</k-checkbox>
 
+    <k-input
+      v-model="text"
+      prefix-icon="smile-fill"
+      suffix-icon="smile-fill"
+      clear-icon
+      type="text"
+    >
+      <template slot="prepend">http://</template>
+      <template slot="append">.com</template>
+    </k-input>
+
+    <k-icon name="smile-fill" />
+
     <k-table :data="tableData" :columns="columns" center height="100px" />
 
     <k-dialog :visible.sync="visible" title="diaolog">
@@ -32,6 +45,7 @@ export default {
         { id: 2, name: "wang" },
         { id: 3, name: "zhang" },
       ],
+      text: "",
     };
   },
   methods: {
