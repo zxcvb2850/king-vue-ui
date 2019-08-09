@@ -11,10 +11,10 @@ export default {
     const params = {
       row: ctx.props.row,
       column: ctx.props.column,
-      index: ctx.props.index,
+      index: ctx.props.ChangeLog,
     };
     if (ctx.props.type === "selection") {
-      return ctx.props.render("input", params);
+      return ctx.props.render("EInput.vue", params);
     }
 
     return ctx.props.render(h, params);

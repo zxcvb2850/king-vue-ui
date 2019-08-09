@@ -20,6 +20,7 @@
         :value="currentValue"
         :disabled="inputDisabled"
         :readonly="readonly"
+        :placeholder="placeholder"
         @input="handleInput"
         @blur="handleBlur"
         @focus="handleFocus"
@@ -61,7 +62,12 @@
         <slot name="append"></slot>
       </div>
     </template>
-    <textarea v-else cols="30" rows="10"></textarea>
+    <textarea
+      v-else
+      cols="30"
+      rows="10"
+      :placeholder="placeholder"
+    ></textarea>
   </div>
 </template>
 
@@ -88,6 +94,7 @@ export default {
       type: String,
       default: "",
     },
+    placeholder: String,
     // 是否禁止输入
     disabled: Boolean,
     // 是否展示密码显示按钮
@@ -134,13 +141,13 @@ export default {
   mounted() {
     this.currentValue = this.value;
 
-    if (this.isPrepend) {
+    if (this.isPrepend()) {
       this.$nextTick(() => {
         const prepend = document.querySelector(".k-input .k-input-group__prepend");
         this.prependLeft = { transform: `translateX(${prepend.offsetWidth}px)` };
       });
     }
-    if (this.isAppend) {
+    if (this.isAppend()) {
       this.$nextTick(() => {
         const append = document.querySelector(".k-input .k-input-group__append");
         this.appendLeft = { transform: `translateX(-${append.offsetWidth}px)` };

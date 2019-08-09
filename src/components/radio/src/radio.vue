@@ -71,9 +71,9 @@ export default {
       },
       set(val) {
         if (this.parent) {
-          this.dispatch("kRadioGroup", "input", val);
+          this.dispatch("kRadioGroup", "EInput.vue", val);
         } else {
-          this.$emit("input", val);
+          this.$emit("EInput.vue", val);
         }
         // eslint-disable-next-line no-unused-expressions
         this.$refs.radio && (this.$refs.radio.checked = this.model === this.label);

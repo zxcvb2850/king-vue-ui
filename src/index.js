@@ -3,12 +3,16 @@ import Message from "./components/message";
 import Form from "./components/form";
 import FormItem from "./components/form-item";
 import Button from "./components/button";
+import Input from "./components/input";
+import Icon from "./components/icon";
 
 const components = [
   Alert,
   Form,
   FormItem,
   Button,
+  Input,
+  Icon,
 ];
 
 const install = (Vue) => {
@@ -27,7 +31,7 @@ if (typeof window !== "undefined" && window.Vue) {
 }
 
 export default {
-  version: process.env.VERSION,
+  // version: process.env.VERSION,
   install,
   ...components,
 };

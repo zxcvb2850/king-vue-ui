@@ -96,7 +96,7 @@ export default {
       this.currentValue = checked;
 
       const value = checked ? this.trueValue : this.falseValue;
-      this.$emit("input", value);
+      this.$emit("EInput.vue", value);
       if (this.group) {
         this.parent.change(this.model);
       } else {

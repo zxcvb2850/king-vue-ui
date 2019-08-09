@@ -53,7 +53,7 @@ export default {
     },
     change(data) {
       this.currentValue = data;
-      this.$emit("input", data);
+      this.$emit("EInput.vue", data);
       this.$emit("change", data);
       this.dispatch("KFormItem", "on-form-change", data);
     },
