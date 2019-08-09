@@ -1,1 +1,1 @@
-*.js linguist-language=Vue
+src/theme/**/* linguist-vendored=false
