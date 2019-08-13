@@ -1,16 +1,6 @@
-<<<<<<< HEAD
-import Vue from 'vue';
-<<<<<<< HEAD
-import Template from './message';
-=======
-import Template from './src/message';
->>>>>>> 04a1ae1... ﻿feat: 组件的封装
-import PopupManager from '../../utlis/popup';
-=======
 import Vue from "vue";
 import Template from "./src/message";
 import PopupManager from "../../utlis/popup";
->>>>>>> ad8f12c... ﻿style: 格式化代码
 
 const statusType = ["info", "success", "warning", "error"];
 
@@ -36,11 +26,7 @@ Template.Instance = (options) => {
       message.remove(name);
     },
   };
-<<<<<<< HEAD
-}
-=======
 };
->>>>>>> 04a1ae1... ﻿feat: 组件的封装
 
 let messageInstance;
 function getMessageInstance() {
