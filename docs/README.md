@@ -4,7 +4,7 @@ lang: zh-CN
 heroText: King UI
 heroImage: /logo.jpg
 actionText: 开始 →
-actionLink: /install/
+actionLink: /components/
 features:
 - title: Vue 组件
   details: 尝试练习Vue组件式开发。

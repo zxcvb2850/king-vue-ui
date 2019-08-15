@@ -1,5 +1,5 @@
 import Vue from "vue";
-import KingUI from "../../src/";
+import KingUI from "../../src";
 import "../../dist/style/index.css";
 
 export default ({
@@ -7,5 +7,5 @@ export default ({
   options,
   router
 }) => {
-  Vue.use(KingUI)
+  Vue.use(KingUI);
 }

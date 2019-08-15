@@ -1,37 +1,17 @@
 const sidebar = require("./sidebar");
+const demoCode = require('../lib');
 
 module.exports = {
   title: "King UI",
   description: "this is Vue Component UI",
   base: "/king-ui/",
   repo: "https://github.com/zxcvb2850/king-vue-ui",
-  head: [
-    ["script", { src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js" }],
-  ],
   plugins: [
-    ["demo-block", {
-      jsfiddle: false, // 是否显示 jsfiddle 链接
-      codepen: false, // 是否显示 codepen 链接
-      horizontal: true // 是否展示为横向样式
-    }]
+    [demoCode]
   ],
   themeConfig: {
-    lastUpdated: "最后更新时间",
+    lastUpdated: "上次更新时间",
     // displayAllHeaders: true,
-    nav: [
-      {
-        text: "指南",
-        link: "/guide/",
-      },
-      {
-        text: "组件",
-        link: "/components/install",
-      },
-      {
-        text: "Github",
-        link: "https://github.com/zxcvb2850/king-vue-ui",
-      }
-    ],
     // 假如你的文档仓库和项目本身不在一个仓库：
     docsRepo: "zxcvb2850/king-vue-ui",
     // 假如文档不是放在仓库的根目录下：
@@ -43,6 +23,21 @@ module.exports = {
     // 默认为 "Edit this page"
     editLinkText: "帮助我们改善此页面！",
     sidebarDepth: 0, // 菜单是否展示组件的h1-6
+    // nav
+    nav: [
+      {
+        text: "指南",
+        link: "/guide/",
+      },
+      {
+        text: "组件",
+        link: "/components/",
+      },
+      {
+        text: "Github",
+        link: "https://github.com/zxcvb2850/king-vue-ui",
+      }
+    ],
     // sidebar: sidebar,
     sidebar: {
       '/guide/': [
@@ -64,7 +59,7 @@ module.exports = {
           children: [
             {
               title: "安装",
-              path: "/components/install",
+              path: "/components/",
             }
           ]
         },
