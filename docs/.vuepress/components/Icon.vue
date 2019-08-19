@@ -26,19 +26,28 @@
 <style scoped lang="stylus">
   ul {
     // display: flex;
+    padding: 0;
+    border: 1px solid #ccc;
     overflow: hidden;
   }
   li {
     list-style-type none;
-    float: left
+    float: left;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 180px;
+    margin-left: -1px;
+    margin-bottom: -1px;
+    width: 16.66%;
+    min-width: 120px;
     height: 100px;
-    border: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     cursor: pointer;
+    &:last-child {
+      border-right: 1px solid #ccc;
+    }
     &:hover {
       color: #46bd87;
     }
