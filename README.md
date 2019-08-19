@@ -1,6 +1,6 @@
-<div style="display:flex;justify-content: center;align-items: center;">
-    <img src="/docs/.vuepress/public/img/logo/logo-slogan.png">
-</div>
+<p align="center">
+    <img src="/docs/.vuepress/public/img/logo/logo-slogan.png" width="30%">
+</p>
 
 > `yarn install` or `npm install`
 
