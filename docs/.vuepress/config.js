@@ -6,10 +6,14 @@ module.exports = {
   description: "this is Vue Component UI",
   base: "/king-ui/",
   repo: "https://github.com/zxcvb2850/king-vue-ui",
+  head: [
+    ['link', { rel: 'icon', href: '/img/logo/logo.png' }]
+  ],
   plugins: [
     [demoCode]
   ],
   themeConfig: {
+    logo: "/img/logo/logo-horizontal.png",
     lastUpdated: "上次更新时间",
     // displayAllHeaders: true,
     // 假如你的文档仓库和项目本身不在一个仓库：
@@ -38,48 +42,6 @@ module.exports = {
         link: "https://github.com/zxcvb2850/king-vue-ui",
       }
     ],
-    // sidebar: sidebar,
-    sidebar: {
-      '/guide/': [
-        {
-          title: "指南",
-          collapsable: false,
-          children: ["", "start"],
-        }
-      ],
-      '/components/': [
-        {
-          title: "更新日志",
-          path: "/components/changelog"
-        },
-        {
-          title: "开发指南",
-          // path: "/components/install/",
-          collapsable: false, // 菜单永远是展开的
-          children: [
-            {
-              title: "安装",
-              path: "/components/",
-            }
-          ]
-        },
-        {
-          title: "组件",
-          collapsable: false, // 菜单永远是展开的
-          children: [
-            {
-              title: "Form",
-              collapsable: false, // 菜单永远是展开的
-              children: [
-                {
-                  title: "Input 输入框",
-                  path: "/components/input"
-                }
-              ]
-            },
-          ],
-        }
-      ],
-    }
+    sidebar: sidebar,
   },
 };

@@ -1,3 +1,7 @@
+<div style="display:flex;justify-content: center;align-items: center;">
+    <img src="/docs/.vuepress/public/img/logo/logo-slogan">
+</div>
+
 > `yarn install` or `npm install`
 
 安装所需依赖

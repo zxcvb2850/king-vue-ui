@@ -178,7 +178,7 @@ export default {
         }
 
         .demo-block-control {
-            z-index: 10;
+            // z-index: 10;
             border-top: solid 1px #eaeefb;
             height: 44px;
             box-sizing: border-box;

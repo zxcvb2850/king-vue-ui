@@ -44,8 +44,10 @@
       },
       splitCode () {
         const code = decodeURIComponent(this.code);
-        console.log("-+-+-+-+-code-+-+-+-+-", code)
-        const script = this.getSource(code, 'script').replace(/export default/, 'return ');
+        let script = this.getSource(code, 'script').replace(/export default/, 'return ');
+        if (!script) {
+          script = 'return {}';
+        }
         const style = this.getSource(code, 'style');
         const template = '<div id="app">' + this.getSource(code, 'template') + '</div>';
 
@@ -90,7 +92,3 @@
     }
   }
 </script>
-
-<style scoped>
-
-</style>

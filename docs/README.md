@@ -2,7 +2,7 @@
 home: true
 lang: zh-CN
 heroText: King UI
-heroImage: /logo.jpg
+heroImage: /img/logo/logo-slogan.png
 actionText: 开始 →
 actionLink: /components/
 features:
