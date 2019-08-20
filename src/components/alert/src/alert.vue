@@ -19,8 +19,13 @@
         </p>
         <p v-if="description && !$slots.default" class="k-alert__description">{{ description }}</p>
       </div>
+      <span
+        v-if="closable && closeText"
+        class="k-alert__closebtn"
+        @click="handleClose"
+      >{{closeText}}</span>
       <i
-        v-if="!closable"
+        v-if="closable && !closeText"
         class="k-alert__closebtn k-icon-close"
         @click="handleClose"
       ></i>
@@ -44,9 +49,13 @@ export default {
     },
     closable: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     description: {
+      type: String,
+      default: "",
+    },
+    closeText: {
       type: String,
       default: "",
     },

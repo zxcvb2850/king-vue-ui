@@ -5,6 +5,7 @@ import FormItem from "./components/form-item";
 import Button from "./components/button";
 import Input from "./components/input";
 import Icon from "./components/icon";
+import Dialog from "./components/dialog";
 
 const components = [
   Alert,
@@ -13,6 +14,7 @@ const components = [
   Button,
   Input,
   Icon,
+  Dialog,
 ];
 
 const install = (Vue) => {
@@ -23,7 +25,7 @@ const install = (Vue) => {
   });
 
   // eslint-disable-next-line no-param-reassign
-  Vue.prototype.$message = Message;
+  Vue.prototype.Message = Message;
 };
 
 if (typeof window !== "undefined" && window.Vue) {
