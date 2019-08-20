@@ -50,6 +50,24 @@ module.exports = {
             }
           ]
         },
+        {
+          title: "Notice",
+          collapsable: false, // 菜单永远是展开的
+          children: [
+            {
+              title: "Alert 警告",
+              path: "/components/alert"
+            },
+            {
+              title: "Message 消息提示",
+              path: "/components/message"
+            },
+            {
+              title: "Dialog 弹窗提示",
+              path: "/components/dialog"
+            },
+          ]
+        },
       ],
     }
   ],
