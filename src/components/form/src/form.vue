@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="k-form">
     <slot></slot>
   </form>
 </template>
@@ -19,13 +19,16 @@ export default {
     rules: {
       type: Object,
     },
+    labelWidth: {
+      type: [String, Number],
+      default: "",
+    },
     size: String,
     disabled: Boolean,
   },
   data() {
     return {
       fields: [],
-
     };
   },
   created() {

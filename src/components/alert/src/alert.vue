@@ -23,7 +23,7 @@
         v-if="closable && closeText"
         class="k-alert__closebtn"
         @click="handleClose"
-      >{{closeText}}</span>
+      >{{ closeText }}</span>
       <i
         v-if="closable && !closeText"
         class="k-alert__closebtn k-icon-close"

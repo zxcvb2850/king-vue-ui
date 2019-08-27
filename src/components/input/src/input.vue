@@ -77,6 +77,14 @@ import Emitter from "../../../mixins/emttie";
 export default {
   name: "KInput",
   mixins: [Emitter],
+  inject: {
+    KForm: {
+      default: "",
+    },
+    KFormItem: {
+      default: "",
+    },
+  },
   props: {
     value: {
       type: [String, Number],
@@ -118,7 +126,7 @@ export default {
       return this.value === null || this.value === undefined ? "" : String(this.value);
     },
     inputDisabled() {
-      return this.disabled || (this.KForm || {}).disabled;
+      return this.disabled || (this.KForm || this.KFormItem || {}).disabled;
     },
     showClear() {
       return this.clearIcon

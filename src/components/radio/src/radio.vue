@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       currentValue: this.value,
-      parent: findComponentUpward(this, "kRadioGroup"), // 查找父级对应的组件
+      parent: findComponentUpward(this, "KRadioGroup"), // 查找父级对应的组件
       group: false, // 是否有group组件
     };
   },
@@ -71,9 +71,9 @@ export default {
       },
       set(val) {
         if (this.parent) {
-          this.dispatch("kRadioGroup", "EInput.vue", val);
+          this.dispatch("KRadioGroup", "input", val);
         } else {
-          this.$emit("EInput.vue", val);
+          this.$emit("input", val);
         }
         // eslint-disable-next-line no-unused-expressions
         this.$refs.radio && (this.$refs.radio.checked = this.model === this.label);

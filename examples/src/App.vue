@@ -27,6 +27,32 @@
     <k-dialog :visible.sync="visible" title="diaolog">
       <div>dialog 内容</div>
     </k-dialog>
+
+    <k-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <k-form-item label="姓名" prop="name">
+        <k-input v-model="form.name" />
+      </k-form-item>
+      <k-form-item label="邮箱" prop="email">
+        <k-input v-model="form.email" />
+      </k-form-item>
+      <k-form-item label="爱好" prop="like">
+        <k-checkbox-group v-model="form.like">
+          <k-checkbox label="sing">唱</k-checkbox>
+          <k-checkbox label="dump">跳</k-checkbox>
+          <k-checkbox label="rap">rap</k-checkbox>
+          <k-checkbox label="ball">篮球</k-checkbox>
+        </k-checkbox-group>
+      </k-form-item>
+      <k-form-item label="性别" prop="sex">
+        <k-radio-group v-model="form.sex">
+          <k-radio label="nan">男</k-radio>
+          <k-radio label="nv">女</k-radio>
+        </k-radio-group>
+      </k-form-item>
+      <k-form-item>
+        <k-button @click="submit">提交</k-button>
+      </k-form-item>
+    </k-form>
   </div>
 </template>
 
@@ -46,6 +72,26 @@ export default {
         { id: 3, name: "zhang" },
       ],
       text: "",
+      form: {
+        name: "xxx",
+        email: "xx@xx.com",
+        like: [],
+        sex: "nan",
+      },
+      rules: {
+        name: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+        ],
+        email: [
+          { required: true, message: "邮箱不能为空", trigger: "blur" },
+          { type: "email", message: "邮箱格式不正确", trigger: "blur" },
+        ],
+        like: [
+          {
+            required: true, type: "array", message: "请选择爱好", trigger: "change",
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -54,6 +100,9 @@ export default {
     },
     showDialog() {
       this.visible = true;
+    },
+    submit() {
+      console.log(this.form);
     },
   },
 };

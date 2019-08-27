@@ -1,11 +1,11 @@
 <template>
   <label
     class="k-checkbox"
-    :class="[{'is-checked': currentValue}, {'is-disabled': disable}]"
+    :class="[{'is-checked': currentValue}, {'is-disabled': isDisabled}]"
   >
     <span
       class="k-checkbox__input"
-      :class="[{'is-checked': currentValue}, {'is-disabled': disable}]"
+      :class="[{'is-checked': currentValue}, {'is-disabled': isDisabled}]"
     >
       <span class="k-checkbox__inner">
         <input
@@ -13,7 +13,7 @@
           v-model="model"
           class="k-checkbox__original"
           type="checkbox"
-          :disable="disable"
+          :disabled="isDisabled"
           :value="label"
           @change="handleChange"
         />
@@ -21,7 +21,7 @@
           v-else
           class="k-checkbox__original"
           type="checkbox"
-          :disabled="disable"
+          :disabled="isDisabled"
           :checked="currentValue"
           @change="handleChange"
         />
@@ -40,8 +40,16 @@ import { findComponentUpward } from "../../../utlis/assist";
 export default {
   name: "KCheckbox",
   mixins: [Emitter],
+  inject: {
+    KForm: {
+      default: "",
+    },
+    KFormItem: {
+      default: "",
+    },
+  },
   props: {
-    disable: {
+    disabled: {
       type: Boolean,
       default: false,
     },
@@ -67,6 +75,11 @@ export default {
       parent: null,
     };
   },
+  computed: {
+    isDisabled() {
+      return this.disabled || (this.KForm || this.KFormItem || {}).disabled;
+    },
+  },
   watch: {
     value(val) {
       if (val === this.trueValue || val === this.falseValue) {
@@ -90,13 +103,13 @@ export default {
   },
   methods: {
     handleChange(event) {
-      if (this.disable) return false;
+      if (this.isDisabled) return false;
 
       const { checked } = event.target;
       this.currentValue = checked;
 
       const value = checked ? this.trueValue : this.falseValue;
-      this.$emit("EInput.vue", value);
+      this.$emit("input", value);
       if (this.group) {
         this.parent.change(this.model);
       } else {

@@ -1,0 +1,36 @@
+@form-prefix-cls: ~"@{--css-prefix}form";
+
+.@{form-prefix-cls} {
+
+  &-item {
+    margin-bottom: 22px;
+  }
+  &__label {
+    float: left;
+    padding: 0 12px 0 0;
+    line-height: 40px;
+    text-align: right;
+    vertical-align: middle;
+    box-sizing: border-box;
+  }
+  &__content {
+    position: relative;
+    line-height: 40px;
+  }
+  &-item-message {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 4px;
+    line-height: 1;
+    color: #F56C6C;
+    font-size: 12px;
+  }
+
+  &-item-label-required {
+    &:before {
+      content: '*';
+      color: #f00;
+    }
+  }
+}

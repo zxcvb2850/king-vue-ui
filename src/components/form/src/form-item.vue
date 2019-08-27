@@ -1,20 +1,31 @@
 <template>
   <div
-    :class="[sizeClass ? 'k-button--' + sizeClass : '',]"
+    class="k-form-item"
+    :class="[
+      sizeClass ? 'k-button--' + sizeClass : '',
+      isDisabled? 'is-disabled' : '',
+    ]"
   >
     <label
       v-if="label"
+      class="k-form__label"
       :class="{ 'k-form-item-label-required': isRequired }"
+      :style="{width: labelWidth}"
     >
       {{ label }}
     </label>
     <div>
-      <slot></slot>
       <div
-        v-if="validateState === 'error'"
-        class="k-form-item-message"
+        class="k-form__content"
+        :style="{marginLeft: labelWidth}"
       >
-        {{ validateMessage }}
+        <slot></slot>
+        <div
+          v-if="validateState === 'error'"
+          class="k-form-item-message"
+        >
+          {{ validateMessage }}
+        </div>
       </div>
     </div>
   </div>
@@ -59,6 +70,12 @@ export default {
     },
     sizeClass() {
       return this.KFormItemSize;
+    },
+    isDisabled() {
+      return this.disabled || this.KForm.disabled;
+    },
+    labelWidth() {
+      return typeof this.KForm.labelWidth === "string" ? this.KForm.labelWidth : `${this.KForm.labelWidth}px`;
     },
   },
   created() {
@@ -116,6 +133,7 @@ export default {
       const model = {};
 
       model[this.prop] = this.fieldValue;
+      console.log("-------", model);
 
       validator.validate(model, { firstFields: true }, (error) => {
         this.validateState = !error ? "success" : "error";
