@@ -52,6 +52,9 @@ export default {
     prop: {
       type: String,
     },
+    rules: {
+      type: [Object, Array],
+    },
     size: String,
   },
   data() {
@@ -78,13 +81,22 @@ export default {
       return typeof this.KForm.labelWidth === "string" ? this.KForm.labelWidth : `${this.KForm.labelWidth}px`;
     },
   },
+  watch: {
+    rules() {
+      this.setRules();
+    },
+  },
   created() {
   },
   mounted() {
     if (this.prop) {
       this.dispatch("KForm", "on-form-item-add", this);
 
-      this.initialValue = this.fieldValue;
+      // this.initialValue = this.fieldValue;
+
+      Object.defineProperty(this, "initialValue", {
+        value: this.fieldValue,
+      });
 
       this.setRules();
     }
@@ -117,10 +129,14 @@ export default {
     // eslint-disable-next-line consistent-return
     validate(trigger, callback = () => {
     }) {
-      const rules = this.getFilteredRule(trigger);
+      let rules = this.getFilteredRule(trigger);
 
       if (!rules || rules.length === 0) {
-        return true;
+        if (!this.required) {
+          callback();
+          return true;
+        }
+        rules = [{ required: true }];
       }
 
       // 设置状态为校准中
@@ -133,7 +149,6 @@ export default {
       const model = {};
 
       model[this.prop] = this.fieldValue;
-      console.log("-------", model);
 
       validator.validate(model, { firstFields: true }, (error) => {
         this.validateState = !error ? "success" : "error";
