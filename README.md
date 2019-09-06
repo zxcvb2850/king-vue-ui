@@ -2,19 +2,21 @@
     <img src="/docs/.vuepress/public/img/logo/logo-slogan.png" width="30%">
 </p>
 
-<div style="text-align: center;">
+<div align="center">
     <h1>King-UI</h1>
     <span>Vue Component UI</span>
 </div>
 
 ## Install
 npm:
-
-`npm install --save-dev king-vue-ui`
+```bash
+npm install --save-dev king-vue-ui
+```
 
 yarn:
-
-`yarn add -D king-vue-ui`
+```bash
+yarn add -D king-vue-ui
+```
 
 script:
 ```html
@@ -37,7 +39,7 @@ export default {
 ```
 
 ## Docs
-[docs](https://zxcvb2850.github.io/king-ui/)
+[Docs](https://zxcvb2850.github.io/king-ui/)
 
 ## ChangeLog
 [LOG](CHANGELOG.md)
