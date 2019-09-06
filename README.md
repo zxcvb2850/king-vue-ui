@@ -2,30 +2,45 @@
     <img src="/docs/.vuepress/public/img/logo/logo-slogan.png" width="30%">
 </p>
 
-> `yarn install` or `npm install`
+<div style="text-align: center;">
+    <h1>King-UI</h1>
+    <span>Vue Component UI</span>
+</div>
 
-安装所需依赖
+## Install
+npm:
 
-> `yarn dev` or `npm run dev`
+`npm install --save-dev king-vue-ui`
 
-运行 examples 实例开发模式
+yarn:
 
-> `yarn build:dev` or `npm run build:dev`
+`yarn add -D king-vue-ui`
 
-对 examples 进行打包，打包文件生成在 examples/dist 中
+script:
+```html
+<script type="text/javascript" src="https://unpkg.com/king-vue-ui/dist/index.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/king-vue-ui/dist/style/index.css">
+```
 
-> `yarn build:style` or `npm run build:style`
+## Usage
+```html
+<template>
+    <k-button>默认按钮</k-button>
+</template>
+<script>
+import { KButton } from "king-vue-ui";
 
-对样式、字体进行打包生成文件 examples/dist/style/index.css and examples/dist/style/fonts/
+export default {
+    components: { KButton },  
+}
+</script>
+```
 
-> `yarn king-ui:dev` or `npm run king-ui:dev`
+## Docs
+[docs](https://zxcvb2850.github.io/king-ui/)
 
-对组件进行 UMD 打包，生成文件在 dist/index.js 中
+## ChangeLog
+[LOG](CHANGELOG.md)
 
-> `yarn king-ui:build` or `npm run king-ui:build`
-
-打包样式、字体， UMD 文件
-
-> `yarn king-ui:test` or `npm run king-ui:test`
-
-构建中...
+## LICENSE
+[MIT](LICENSE)
