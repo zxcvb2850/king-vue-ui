@@ -138,26 +138,3 @@ export default {
   },
 };
 </script>
-
-<style lang="less">
-  table{
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    empty-cells: show;
-    border: 1px solid #e9e9e9;
-  }
-  table td, table th{
-    padding: 8px 16px;
-    border: 1px solid #e9e9e9;
-    text-align: left;
-  }
-  .is-center {
-    text-align: center;
-  }
-
-  .table-fixed {
-    table-layout: fixed;
-    width: 100%;
-  }
-</style>

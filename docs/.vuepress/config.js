@@ -1,5 +1,5 @@
 const sidebar = require("./sidebar");
-const demoCode = require('../lib');
+const demoCode = require("../lib");
 
 module.exports = {
   title: "King UI",
@@ -7,7 +7,8 @@ module.exports = {
   base: "/king-ui/",
   repo: "https://github.com/zxcvb2850/king-vue-ui",
   head: [
-    ['link', { rel: 'icon', href: '/img/logo/logo.png' }]
+    ["link", { rel: "icon", href: "/img/logo/logo.png" }],
+    ["script", { src: "https://hm.baidu.com/hm.js?79374b5fececc30275ff1b9865cdac65" }],
   ],
   plugins: [
     [demoCode]

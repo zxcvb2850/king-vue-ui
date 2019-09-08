@@ -1,4 +1,4 @@
-## 0.0.1-alpha-1 (2019-08-13)
+## 0.0.1-alpha-2 (2019-09-08)
 
 
 ### Bug Fixes
@@ -10,6 +10,7 @@
 * 优化message动画效果 ([b546562](https://github.com/zxcvb2850/king-vue-ui/commit/b546562))
 * 修改 emmiter.js ([9c087b1](https://github.com/zxcvb2850/king-vue-ui/commit/9c087b1))
 * 修改 eslint 配置 ([077d037](https://github.com/zxcvb2850/king-vue-ui/commit/077d037))
+* 表单验证没有rules验证不通过问题 ([c511e29](https://github.com/zxcvb2850/king-vue-ui/commit/c511e29))
 
 
 ### Features
