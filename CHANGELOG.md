@@ -1,4 +1,8 @@
-## 0.0.1-alpha-2 (2019-09-08)
+## [0.0.1-alpha-4](https://github.com/zxcvb2850/king-vue-ui/compare/0.0.1-alpha-2...0.0.1-alpha-4) (2019-09-09)
+
+
+
+## [0.0.1-alpha-2](https://github.com/zxcvb2850/king-vue-ui/compare/7d40760...0.0.1-alpha-2) (2019-09-08)
 
 
 ### Bug Fixes

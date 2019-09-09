@@ -24,6 +24,32 @@ script:
 <link rel="stylesheet" href="https://unpkg.com/king-vue-ui/dist/style/index.css">
 ```
 
+### 按需引用
+
+借助插件 babel-plugin-import可以实现按需加载组件，减少文件体积。首先安装，并在文件 .babelrc 中配置：
+
+```bash
+npm install babel-plugin-import --save-dev
+
+// .babelrc
+{
+  "plugins": [["import", {
+    "libraryName": "kint-vue-ui",
+    "libraryDirectory": "src/components"
+  }]]
+}
+```
+
+然后这样按需引入组件，就可以减小体积了：
+
+```bash
+import { Button, Message } from 'king-vue-ui';
+Vue.component('Button', Button);
+Vue.prototype.Message = Message;
+```
+
+**注意：即便是按需加载仍需引入css文件，`import "king-vue-ui/dist/style/index.css"`**
+
 ## Usage
 ```html
 <template>
