@@ -44,7 +44,7 @@ if (typeof window !== "undefined" && window.Vue) {
 
 export default {
   // version: process.env.VERSION,
-  version: "0.0.1-alpha-3",
+  version: "0.0.1-alpha-4",
   install,
   Alert,
   Form,

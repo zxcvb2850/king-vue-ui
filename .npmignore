@@ -28,5 +28,11 @@ yarn-error.log*
 *.sw?
 
 
-# all . start file
-*.*
+# . file
+.gitignore
+.gitattributes
+.eslintrc.js
+.eslintignore
+.editorconfig
+.babelrc
+.postcssrc.js
