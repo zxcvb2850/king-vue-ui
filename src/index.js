@@ -44,7 +44,18 @@ if (typeof window !== "undefined" && window.Vue) {
 
 export default {
   // version: process.env.VERSION,
-  version: "0.0.1",
+  version: "0.0.1-alpha-3",
   install,
-  ...components,
+  Alert,
+  Form,
+  FormItem,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup,
+  Button,
+  Input,
+  Icon,
+  Dialog,
+  Table,
 };

@@ -2,8 +2,9 @@
 node_modules
 
 # build file
-/examples/dist/
-/docs/.vuepress/dist/
+/examples
+/docs
+/build
 
 # local env files
 .env.local
@@ -11,6 +12,8 @@ node_modules
 coverage
 
 # Log files
+yarn.lock
+package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -23,3 +26,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+
+# all . start file
+*.*

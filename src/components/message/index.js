@@ -44,8 +44,12 @@ const Message = (options) => {
       duration: 3,
     };
   }
+  const data = options;
   // eslint-disable-next-line
-  options = { duration: 3, type: 'info', ...options };
+  options = { duration: 3, type: 'info' };
+  // eslint-disable-next-line
+  options = Object.assign(options, data);
+  // console.log("---------------", options);
   const zIndex = PopupManager.nextZIndex();
   const instance = getMessageInstance();
 
