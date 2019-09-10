@@ -52,6 +52,10 @@ module.exports = {
       },
       "svg": "always",
       "math": "always"
-    }]
+    }],
+    "prefer-rest-params": "off",
+    "func-names": ["error", "never"],
+    "no-restricted-syntax": "off",
+    "prefer-destructuring": "off",
   },
 };

@@ -49,3 +49,15 @@ export function removeClass(dom, className) {
     dom.className = curClass.join(" ");
   }
 }
+
+// 判断某个 key 是否在对象中
+export function hasOwn(obj, key) {
+  return Object.hasOwnProperty.call(obj, key);
+}
+
+/**
+ * 判断是否为虚拟dom
+ * */
+export function isVNode(node) {
+  return node !== null && typeof node === "object" && hasOwn(node, "componentOptions");
+}

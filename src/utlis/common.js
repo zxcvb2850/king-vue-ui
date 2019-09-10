@@ -1,6 +1,7 @@
 /**
  * 公共定义常量
  * */
+export const STATUS_TYPE = ["info", "success", "warning", "error"];
 
 /* eslint-disable */
 export const TYPE_CLASSES_MAP = {

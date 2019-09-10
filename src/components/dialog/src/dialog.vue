@@ -160,7 +160,7 @@ export default {
       this.onClose && this.onClose();
 
       if (this.lockScroll) {
-        const body = document.querySelector('body');
+        const body = document.querySelector("body");
         removeClass(body, "k-popup-parent--hidden");
       }
 

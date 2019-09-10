@@ -1,0 +1,76 @@
+@import "./mixins/color";
+
+@message-bpx-prefix-cls: ~"@{--css-prefix}message-box";
+
+.@{message-bpx-prefix-cls} {
+  &__wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      width: 0;
+      vertical-align: middle;
+    }
+  }
+
+  display: inline-block;
+  padding-bottom: 10px;
+  width: 420px;
+  border-radius: 4px;
+  box-shadow: 2px 4px 12px 0 rgba(0,0,0,.3);
+  vertical-align: middle;
+  background-color: #FFF;
+  text-align: left;
+
+  &.is-center {
+    text-align: center;
+    .k-message-box__footer {
+      text-align: center;
+    }
+  }
+
+  &__header {
+    position: relative;
+    padding: 15px 15px 10px;
+  }
+  &__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 4px;
+    cursor: pointer;
+  }
+
+  &__content {
+    position: relative;
+    padding: 10px 15px;
+    color: #606266;
+    font-size: 14px;
+
+    & > p {
+      margin: 0;
+      line-height: 24px;
+    }
+  }
+  &__status {
+    display: inline-block;
+    font-size: 30px;
+    vertical-align: middle;
+    .style-color-mixin();
+  }
+  &__message {
+    display: inline-block;
+  }
+
+  &__footer {
+    padding: 5px 15px 0;
+    text-align: right;
+  }
+}

@@ -24,7 +24,7 @@
 
     <k-table :data="tableData" :columns="columns" center height="100px" />
 
-    <k-dialog :visible.sync="visible" title="diaolog">
+    <k-dialog :visible="visible" title="diaolog" @close="closeDialog">
       <div>dialog 内容</div>
     </k-dialog>
 
@@ -96,10 +96,56 @@ export default {
   },
   methods: {
     showMessage() {
-      this.$message.success("xxxxxxxxxxxxxx");
+      console.log("---vue----", this);
+      /* const h = this.$createElement;
+      this.$alert({
+        title: "我是标题",
+        content:  h('p', null, [
+          h('span', null, '内容可以是 '),
+          h('i', { style: 'color: teal' }, 'VNode')
+        ]),
+        type: "warning",
+      }); */
+      this.$alert("我是标题", "我是内容", {
+        userHtmlString: true,
+        type: "warning",
+        cancelButtonText: true,
+        confirmButtonText: "好的",
+        cancelButtonClass: "cancel",
+        confirmButtonClass: "confirm",
+        customClass: "box-box-box",
+        center: true,
+        showClose: true,
+        closeOnClickModal: true,
+        lockScroll: true,
+        beforeClose: (action, instance, done) => {
+          if (action === "confirm") {
+            console.log("执行中");
+            setTimeout(() => {
+              done();
+            }, 1500);
+          } else {
+            done();
+          }
+        },
+      });
+      /* this.Message({
+        content: "xxxxxxxxx",
+        type: "error",
+        duration: 0,
+      }) */
     },
     showDialog() {
       this.visible = true;
+    },
+    closeDialog() {
+      this.$alert("content", "title", {})
+        .then((res) => {
+          console.log("res:", res);
+          this.visible = false;
+        }).catch((error) => {
+          console.log("error:", error);
+        });
     },
     submit() {
       console.log(this.form);

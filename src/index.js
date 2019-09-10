@@ -1,5 +1,6 @@
 import Alert from "./components/alert";
 import Message from "./components/message";
+import MessageBox from "./components/message-box";
 import Form from "./components/form";
 import FormItem from "./components/form-item";
 import Checkbox from "./components/checkbox";
@@ -36,6 +37,7 @@ const install = (Vue) => {
 
   // eslint-disable-next-line no-param-reassign
   Vue.prototype.Message = Message;
+  Vue.prototype.$alert = MessageBox.alert;
 };
 
 if (typeof window !== "undefined" && window.Vue) {

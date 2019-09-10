@@ -1,8 +1,7 @@
 import Vue from "vue";
 import Template from "./src/message";
 import PopupManager from "../../utlis/popup";
-
-const statusType = ["info", "success", "warning", "error"];
+import { STATUS_TYPE } from "../../utlis/common";
 
 Template.Instance = (options) => {
   // eslint-disable-next-line no-param-reassign
@@ -56,7 +55,7 @@ const Message = (options) => {
   instance.add(options, zIndex);
 };
 
-statusType.forEach((type) => {
+STATUS_TYPE.forEach((type) => {
   Message[type] = (options) => {
     if (typeof options === "string") {
       // eslint-disable-next-line no-param-reassign
