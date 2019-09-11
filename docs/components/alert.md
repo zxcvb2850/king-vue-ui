@@ -2,7 +2,7 @@
 pageClass: alert-components-class
 ---
 
-## Alert
+## Alert 警告
 
 ### 基本用法
 

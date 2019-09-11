@@ -106,7 +106,7 @@ export default {
         ]),
         type: "warning",
       }); */
-      this.$alert("我是标题", "我是内容", {
+      /* this.$alert("我是标题", "我是内容", {
         userHtmlString: true,
         type: "warning",
         cancelButtonText: true,
@@ -128,7 +128,16 @@ export default {
             done();
           }
         },
-      });
+      }); */
+      this.$prompt("提示", "请输入备注", {
+        inputRegexp: /[^\s]/,
+      })
+        .then(({ value }) => {
+          console.log("value: ", value);
+        })
+        .catch((cancel) => {
+          console.log(cancel);
+        });
       /* this.Message({
         content: "xxxxxxxxx",
         type: "error",
@@ -139,12 +148,24 @@ export default {
       this.visible = true;
     },
     closeDialog() {
-      this.$alert("content", "title", {})
+      /* this.$alert("content", "title", {})
         .then((res) => {
           console.log("res:", res);
           this.visible = false;
         }).catch((error) => {
           console.log("error:", error);
+        }); */
+
+
+      this.$prompt("提示", "请输入备注", {
+        inputRegexp: /[^\s]/,
+      })
+        .then(({ value }) => {
+          console.log("value: ", value);
+          this.visible = false;
+        })
+        .catch((cancel) => {
+          console.log(cancel);
         });
     },
     submit() {

@@ -63,6 +63,10 @@ module.exports = {
               path: "/components/message"
             },
             {
+              title: "MessageBox 消息弹窗",
+              path: "/components/messagebox"
+            },
+            {
               title: "Dialog 弹窗提示",
               path: "/components/dialog"
             },

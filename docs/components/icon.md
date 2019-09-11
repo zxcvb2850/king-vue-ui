@@ -2,7 +2,7 @@
 pageClass: icon-components-class
 ---
 
-## Icon
+## Icon 图标
 
 
 <Icon />
