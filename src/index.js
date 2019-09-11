@@ -38,6 +38,7 @@ const install = (Vue) => {
   // eslint-disable-next-line no-param-reassign
   Vue.prototype.Message = Message;
   Vue.prototype.$alert = MessageBox.alert;
+  Vue.prototype.$prompt = MessageBox.prompt;
 };
 
 if (typeof window !== "undefined" && window.Vue) {

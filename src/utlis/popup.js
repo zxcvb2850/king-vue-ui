@@ -115,8 +115,6 @@ const PopupManager = {
   closeModal(id) {
     const { modalStack } = this;
     const modalDom = getModal();
-
-    console.log(modalStack);
     // 判断是否有多个dialog
     // eslint-disable-next-line no-empty
     if (modalStack.length > 0) {

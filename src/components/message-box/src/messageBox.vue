@@ -25,10 +25,22 @@
             <p v-else v-html="content"></p>
           </div>
         </div>
+        <div v-if="showInput" class="k-message-box__input">
+          <k-input
+            v-model="inputValue"
+            :placeholder="inputPlaceholder"
+            @keydown.enter.native="handleAction('confirm')"
+          />
+          <span
+            v-show="inputError"
+            class="k-message-box__input--message"
+          >{{ inputErrorMessage }}</span>
+        </div>
         <div v-if="!!confirmButtonText || !!cancelButtonText" class="k-message-box__footer">
           <k-button
             v-if="!!cancelButtonText"
             :class="cancelButtonClass"
+            size="mini"
             @click="handleAction('cancel')"
           >
             {{ cancelBtnText }}
@@ -37,6 +49,7 @@
             v-if="!!confirmButtonText"
             type="primary"
             :class="confirmButtonClass"
+            size="mini"
             @click="handleAction('confirm')"
           >
             {{ confirmBtnText }}
@@ -49,6 +62,7 @@
 
 <script>
 import KButton from "../../button";
+import KInput from "../../input";
 import PopupManager from "../../../utlis/popup";
 import { TYPE_CLASSES_MAP } from "../../../utlis/common";
 import { addClass, removeClass } from "../../../utlis/dom";
@@ -57,7 +71,7 @@ let idSeed = 0;
 
 export default {
   name: "KMessageBox",
-  components: { KButton },
+  components: { KButton, KInput },
   props: {
     visible: {
       type: Boolean,
@@ -123,18 +137,37 @@ export default {
       type: String,
       default: "",
     },
+    // 是否居中
     center: Boolean,
+    // 是否展示 input 输入框
+    showInput: Boolean,
+    // 输入框提示信息
+    inputPlaceholder: {
+      type: String,
+      default: "",
+    },
+    // input 的正则
+    inputRegexp: {
+      type: RegExp,
+      default: null,
+    },
+    // input 输入错误提示
+    inputErrorMessage: {
+      type: String,
+      default: "输入错误",
+    },
   },
   data() {
     return {
       title: "", // 消息标题
       content: "", // 消息内容
+      inputValue: "", // 输入框内容
+      inputError: false, // 是否展示输入框错误提示
     };
   },
   computed: {
     icon() {
       const { type, iconClass } = this;
-      console.log("--type--", type, TYPE_CLASSES_MAP[type]);
       return iconClass || (type && TYPE_CLASSES_MAP[type] ? `k-message-box__status--${type} k-icon-${TYPE_CLASSES_MAP[type]}` : "");
     },
     cancelBtnText() {
@@ -164,6 +197,11 @@ export default {
         PopupManager.closeModal(this._msgId);
       }
     },
+    inputValue(val) {
+      if (val && this.type === "$prompt") {
+        this.isValidate();
+      }
+    },
   },
   beforeMount() {
     /* eslint-disable */
@@ -172,9 +210,6 @@ export default {
     PopupManager.register(this._msgId, this);
   },
   mounted() {
-    this.$nextTick(() => {
-      console.log("title-----", this.$slots.default, this.content);
-    });
   },
   methods: {
     doClose() {
@@ -186,15 +221,36 @@ export default {
       }
       setTimeout(() => {
         if (this.action) this.callback(this.action, this);
+        this.$nextTick(() => {
+          // 关闭初始化变量
+          // todo 此处过于粗暴和丑陋，需要思考优化方法
+          if (this.type === "$prompt") {
+            this.inputValue = "";
+            this.inputError = false;
+            this.inputErrorMessage = "";
+          }
+        });
       });
     },
     handleAction(action) {
+      if (this.type === "$prompt" && action === "confirm" && !this.isValidate()) return;
       this.action = action;
       if (typeof this.beforeClose === "function") {
         this.beforeClose(action, this, this.doClose);
       } else {
         this.doClose();
       }
+    },
+    // 检测 input 输入框是否正确
+    isValidate() {
+      if (this.type === "$prompt") {
+        if (this.inputRegexp && !this.inputRegexp.test(this.inputValue || "")) {
+          this.inputError = true;
+          return false;
+        }
+        this.inputError = false;
+      }
+      return true;
     },
   },
   beforeDestroy() {

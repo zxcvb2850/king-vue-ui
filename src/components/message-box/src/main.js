@@ -14,6 +14,12 @@ const optionsDefault = {
   userHtmlString: false,
   closeOnClickModal: false,
   lockScroll: false,
+  confirmButtonText: "确认",
+  cancelButtonText: "取消",
+  showInput: false,
+  inputPlaceholder: "",
+  inputRegexp: null,
+  inputErrorMessage: "输入错误",
 };
 
 let currentMsg = null; // 当前消息参数
@@ -26,12 +32,20 @@ const defaultCallback = (action) => {
   if (currentMsg) {
     const callback = currentMsg.callback;
     if (typeof callback === "function") {
-      callback(action);
+      if (instance.showInput) {
+        callback({ action, value: instance.inputValue });
+      } else {
+        callback(action);
+      }
     }
 
     if (currentMsg.resolve) {
       if (action === "confirm") {
-        currentMsg.resolve(action);
+        if (instance.showInput) {
+          currentMsg.resolve({ value: instance.inputValue, action });
+        } else {
+          currentMsg.resolve(action);
+        }
       } else if (currentMsg.reject && (action === "cancel" || action === "close")) {
         currentMsg.reject(action);
       }
@@ -122,16 +136,26 @@ MessageBox.alert = function (title, content, options) {
     // eslint-disable-next-line no-param-reassign
     options = title;
   }
-  return MessageBox(merge({ title, content }, options));
+  if (options.showInput) {
+    options.showInput = false;
+  }
+  return MessageBox(merge({
+    type: "$alert",
+    title,
+    content,
+  }, options));
 };
 
-MessageBox.confirm = function (title, content, options) {
+MessageBox.prompt = function (title, content, options) {
   if (typeof title === "object") {
     // eslint-disable-next-line no-param-reassign
     options = title;
   }
   return MessageBox(merge({
-    title, content,
+    type: "$prompt",
+    title,
+    content,
+    showInput: true,
   }, options));
 };
 
