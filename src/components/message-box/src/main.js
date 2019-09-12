@@ -136,7 +136,7 @@ MessageBox.alert = function (title, content, options) {
     // eslint-disable-next-line no-param-reassign
     options = title;
   }
-  if (options.showInput) {
+  if (options && options.showInput) {
     options.showInput = false;
   }
   return MessageBox(merge({
