@@ -43,6 +43,20 @@
     }
   }
 
+  &.is-round {
+    & {
+      padding: 12px 23px;
+      border-radius: 20px;
+    }
+  }
+
+  &.is-circle {
+    & {
+      padding: 12px;
+      border-radius: 50%;
+    }
+  }
+
   &--primary {
     .button-kind(@--button-primary-color, @--button-primary-border, @--button-primary-background);
   }

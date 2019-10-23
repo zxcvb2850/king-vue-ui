@@ -129,7 +129,7 @@ export default {
           }
         },
       }); */
-      this.$prompt("提示", "请输入备注", {
+      /* this.$prompt("提示", "请输入备注", {
         inputRegexp: /[^\s]/,
       })
         .then(({ value }) => {
@@ -137,7 +137,7 @@ export default {
         })
         .catch((cancel) => {
           console.log(cancel);
-        });
+        }); */
       /* this.Message({
         content: "xxxxxxxxx",
         type: "error",

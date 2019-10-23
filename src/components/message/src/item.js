@@ -39,7 +39,7 @@ export default {
         })
           : h("span", {
             class: "k-message__item__content",
-          }, this.content),
+          }, [this.content]),
         this.showClose && h("i", {
           class: "k-message__item__close k-icon-close",
           on: { click: () => this.handleClose(this.name) },

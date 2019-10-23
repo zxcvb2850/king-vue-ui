@@ -12,5 +12,5 @@ testsContext.keys().forEach(testsContext);
 // you can also change this to match only the subset of files that
 // you want coverage for.
 // const srcContext = require.context('../../src', true, /^\.\/(?!main(\.js)?$)/);
-const srcContext = require.context('../../src/components/', true, /^\.\/(?!theme.*?(\.less)?$)/);
+const srcContext = require.context('../../src', true, /^\.\/(?!theme.*?(\.less)?$)/);
 srcContext.keys().forEach(srcContext);

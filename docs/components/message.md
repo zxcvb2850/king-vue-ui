@@ -17,9 +17,9 @@ export default {
     openVn() {
       const h = this.$createElement;
       this.Message({
-        content: h("p", [
-          h("span", {}, "我是"),
-          h("span", {style: "color: red"}, "VNode"),
+        content:  h('p', null, [
+          h('span', null, '内容可以是 '),
+          h('i', { style: 'color: teal' }, 'VNode')
         ])
       })
     },
