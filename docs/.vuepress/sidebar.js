@@ -32,11 +32,11 @@ module.exports = {
           children: [
             {
               title: "Button 按钮",
-              path: "/components/button"
+              path: "/components/basic/button"
             },
             {
               title: "Icon 图标",
-              path: "/components/icon"
+              path: "/components/basic/icon"
             },
           ]
         },
@@ -46,8 +46,20 @@ module.exports = {
           children: [
             {
               title: "Input 输入框",
-              path: "/components/input"
-            }
+              path: "/components/form/input"
+            },
+            {
+              title: "Radio 单选框",
+              path: "/components/form/radio"
+            },
+            {
+              title: "Checked 复选框",
+              path: "/components/form/checkbox"
+            },
+            {
+              title: "Form 表单",
+              path: "/components/form/form"
+            },
           ]
         },
         {
@@ -56,19 +68,19 @@ module.exports = {
           children: [
             {
               title: "Alert 警告",
-              path: "/components/alert"
+              path: "/components/notice/alert"
             },
             {
               title: "Message 消息提示",
-              path: "/components/message"
+              path: "/components/notice/message"
             },
             {
               title: "MessageBox 消息弹窗",
-              path: "/components/messagebox"
+              path: "/components/notice/messagebox"
             },
             {
               title: "Dialog 弹窗提示",
-              path: "/components/dialog"
+              path: "/components/notice/dialog"
             },
           ]
         },

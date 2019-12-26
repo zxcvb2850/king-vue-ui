@@ -43,7 +43,7 @@
         <span class="k-input__suffix-inner">
           <template v-if="!showClear|| !showPwdVisible">
             <slot name="suffix"></slot>
-            <i v-if="suffixIcon" :class="suffixIcon" class="k-input__icon"></i>
+            <i v-if="suffixIcon" :class="'k-icon-' + suffixIcon" class="k-input__icon"></i>
           </template>
           <i
             v-if="showClear"

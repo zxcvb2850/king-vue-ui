@@ -20,6 +20,13 @@
       <template slot="append">.com</template>
     </k-input>
 
+    <k-input
+      v-model="text"
+      prefix-icon="smile-fill"
+      suffix-icon="smile-fill"
+      type="text"
+    />
+
     <k-icon name="smile-fill" />
 
     <k-table :data="tableData" :columns="columns" center height="100px" />
@@ -75,7 +82,7 @@ export default {
       form: {
         name: "xxx",
         email: "xx@xx.com",
-        like: [],
+        like: ["dump", "sing"],
         sex: "nan",
       },
       rules: {

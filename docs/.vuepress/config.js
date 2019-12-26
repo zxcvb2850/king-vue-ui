@@ -1,5 +1,7 @@
+const path = require("path");
 const sidebar = require("./sidebar");
-const demoCode = require("../lib");
+// const demoCode = require("../lib");
+const demoBlock = require("../lib");
 
 module.exports = {
   title: "King UI",
@@ -11,7 +13,7 @@ module.exports = {
     ["script", { src: "https://hm.baidu.com/hm.js?79374b5fececc30275ff1b9865cdac65" }],
   ],
   plugins: [
-    [demoCode]
+    [demoBlock]
   ],
   themeConfig: {
     logo: "/img/logo/logo-horizontal.png",

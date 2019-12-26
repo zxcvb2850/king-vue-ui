@@ -6,7 +6,12 @@
   "repository": "https://github.com/zxcvb2850/king-vue-ui",
   "author": "xiaobai2850@gmail.com",
   "license": "MIT",
-  "keywords": ["vue", "components", "king-ui", "king-vue-ui"],
+  "keywords": [
+    "vue",
+    "components",
+    "king-ui",
+    "king-vue-ui"
+  ],
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.demo.dev.js",
     "build:dev": "webpack --config build/webpack.demo.build.js",
@@ -21,8 +26,8 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
-    "vue": "^2.6.10",
-    "async-validator": "^1.11.3"
+    "async-validator": "^1.11.3",
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",
